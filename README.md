@@ -1,7 +1,7 @@
 # canvas-matthews-data-loader
 
 ### How to find your Matthews API Key and Secret
-The Matthews admin user interface is under development so you'll have to find your API key and secret by directly accessing your MongoDB instance. Follow the commands below to find your key and secret. The commands assume that you are able to access MongoDB via the command line and that you are using the default database name (if not, you would have to have changed this manually in Matthews).
+The Matthews admin user interface is under development so you'll have to find your API key and secret by directly accessing your MongoDB instance. Follow the commands below to find your key and secret. The commands assume that you are able to access MongoDB via the command line and that you are using the default database name (if not, you would have changed this manually in Matthews).
 
 ``````````````````
 > mongo
@@ -27,11 +27,13 @@ The Matthews admin user interface is under development so you'll have to find yo
 }
 ``````````````````
 
-Find the values apiKey and apiSecret, those are the values you'll need to use to create a session with Matthews. In the example above the key i abcdef and the secret is 123456
+Find the values apiKey and apiSecret, those are the values you'll need to use to create a session with Matthews. In the example above the key is abcdef and the secret is 123456
 
 ### Running the canvas data loader
 `````
-mvn clean package spring-boot:run -Dmatthews.apikey=<your matthews api key> -Dmatthews.apisecret=<your matthews api secret> -Dcanvas.apisecret=<your canvas api secret> -Dcanvas.apikey=<your canvas api key>
+mvn clean package spring-boot:run -Dmatthews.apikey=<your matthews api key> 
+  -Dmatthews.apisecret=<your matthews api secret> -Dcanvas.apisecret=<your canvas api secret> 
+  -Dcanvas.apikey=<your canvas api key>
 `````
 
 Note if you are not running Matthews on localhost with the default port (9966) you will also need to pass:
