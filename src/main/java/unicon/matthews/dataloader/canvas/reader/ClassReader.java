@@ -66,7 +66,7 @@ public class ClassReader {
           
           String content;
           while ((content = buffered.readLine()) != null) {
-            System.out.println(content);
+            logger.debug(content);
             StringTokenizer st = new StringTokenizer(content,"\t");
             String [] sa = new String [st.countTokens()];
             int i = 0;
