@@ -1,21 +1,18 @@
 package unicon.matthews.dataloader.canvas;
 
-import java.io.File;
-import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import unicon.matthews.dataloader.DataLoader;
 import unicon.matthews.dataloader.MatthewsClient;
-import unicon.matthews.dataloader.canvas.exception.CanvasDataConfigurationException;
-import unicon.matthews.dataloader.canvas.exception.UnexpectedApiResponseException;
 import unicon.matthews.dataloader.canvas.model.CanvasDataDump;
 import unicon.matthews.dataloader.canvas.reader.ClassReader;
 import unicon.matthews.dataloader.canvas.reader.EnrollmentReader;
@@ -24,29 +21,39 @@ import unicon.matthews.dataloader.canvas.reader.UserReader;
 import unicon.matthews.oneroster.Enrollment;
 import unicon.matthews.oneroster.LineItem;
 import unicon.matthews.oneroster.User;
+import unicon.matthews.oneroster.Class;
+
+import static unicon.matthews.dataloader.canvas.CanvasDataApiClient.Options;
 
 @Component
 public class CanvasDataLoader implements DataLoader {
   
   private static Logger logger = LoggerFactory.getLogger(CanvasDataLoader.class);
-  
-  @Value("${downloaddirectory:CANVAS_DUMP}")
-  private String downloadDirectory;
-  
-  @Autowired private MatthewsClient matthewsClient;
-  @Autowired private ApiClient apiClient;
+
+  @Autowired
+  private MatthewsClient matthewsClient;
+
+  @Autowired
+  private CanvasDataApiClient canvasDataApiClient;
 
   @Override
   public void run() {
     
     try {
-      //CanvasDataDump canvasDataDump = apiClient.getLatestDump();
-      //canvasDataDump.downloadAllFiles(new File(downloadDirectory));
-      
+
+      // Example of getting dumps in an inclusive date range, with downloads
+//      List<CanvasDataDump> dumps = canvasDataApiClient.getDumps(LocalDate.parse("2017-01-15"),
+//              LocalDate.parse("2017-01-19"), Options.Builder.instanceOf().withArtifactDownloads().build());
+
+      // Example of getting latest dump, but no download
+      CanvasDataDump dump = canvasDataApiClient.getLatestDump(Options.NONE);
+
+      // Dump passed to the processors below needs to have been downloaded, or they will fail.
+
       Map<String, unicon.matthews.oneroster.Class> classMap = new HashMap<>();
       Map<String, User> userMap = new HashMap<>();
       
-      ClassReader courseSectionReader = new ClassReader(downloadDirectory);
+      ClassReader courseSectionReader = new ClassReader(dump.getDownloadPath().toString());
       Collection<unicon.matthews.oneroster.Class> classes = courseSectionReader.read();
       if (classes != null) {
         for (unicon.matthews.oneroster.Class klass : classes) {
@@ -55,7 +62,7 @@ public class CanvasDataLoader implements DataLoader {
         }
       }
       
-      UserReader userReader = new UserReader(downloadDirectory);
+      UserReader userReader = new UserReader(dump.getDownloadPath().toString());
       Collection<User> users = userReader.read();
       if (users != null) {
         for (User user : users) {
@@ -64,7 +71,7 @@ public class CanvasDataLoader implements DataLoader {
         }
       }
       
-      EnrollmentReader enrollmentReader = new EnrollmentReader(downloadDirectory,classMap,userMap);
+      EnrollmentReader enrollmentReader = new EnrollmentReader(dump.getDownloadPath().toString(),classMap,userMap);
       Collection<Enrollment> enrollments = enrollmentReader.read();
       if (enrollments != null) {
         for (Enrollment enrollment : enrollments) {
@@ -72,7 +79,7 @@ public class CanvasDataLoader implements DataLoader {
         }
       }
       
-      LineItemReader lineItemReader = new LineItemReader(downloadDirectory, classMap);
+      LineItemReader lineItemReader = new LineItemReader(dump.getDownloadPath().toString(), classMap);
       Collection<LineItem> lineItems = lineItemReader.read();
       if (lineItems != null) {
         for (LineItem li : lineItems) {
