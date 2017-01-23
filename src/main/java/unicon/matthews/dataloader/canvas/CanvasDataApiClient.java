@@ -420,6 +420,10 @@ public class CanvasDataApiClient {
 
         public static Options NONE = new Options();
 
+        public static Builder builder() {
+            return Builder.instanceOf();
+        }
+
         public static class Builder {
 
             private Options options = new Options();

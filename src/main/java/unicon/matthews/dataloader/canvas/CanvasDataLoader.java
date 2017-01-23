@@ -43,7 +43,7 @@ public class CanvasDataLoader implements DataLoader {
 
       // Example of getting dumps in an inclusive date range, with downloads
 //      List<CanvasDataDump> dumps = canvasDataApiClient.getDumps(LocalDate.parse("2017-01-15"),
-//              LocalDate.parse("2017-01-19"), Options.Builder.instanceOf().withArtifactDownloads().build());
+//              LocalDate.parse("2017-01-19"), Options.builder().withArtifactDownloads().build());
 
       // Example of getting latest dump, but no download
       CanvasDataDump dump = canvasDataApiClient.getLatestDump(Options.NONE);
