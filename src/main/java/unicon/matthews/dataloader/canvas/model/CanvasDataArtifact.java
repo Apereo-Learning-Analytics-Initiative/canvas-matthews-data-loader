@@ -1,25 +1,27 @@
 package unicon.matthews.dataloader.canvas.model;
 
-import java.io.File;
-import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 
-import unicon.matthews.dataloader.canvas.RestUtils;
-import unicon.matthews.dataloader.canvas.exception.UnexpectedApiResponseException;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class CanvasDataArtifact {
+
     private final String tableName;
     private final boolean partial;
     private final List<CanvasDataFile> files;
 
+    @JsonIgnore
+    private Path downloadPath;
+
     @JsonCreator
-    public CanvasDataArtifact(@JsonProperty("tableName") final String tableName,
-            @JsonProperty("partial") final boolean partial, @JsonProperty("files") final List<CanvasDataFile> files) {
+    public CanvasDataArtifact(
+            @JsonProperty("tableName") final String tableName,
+            @JsonProperty("partial") final boolean partial,
+            @JsonProperty("files") final List<CanvasDataFile> files) {
         this.tableName = tableName;
         this.partial = partial;
         this.files = files;
@@ -37,21 +39,11 @@ public class CanvasDataArtifact {
         return Collections.unmodifiableList(files);
     }
 
-    public void downloadAllFiles(final File directory) throws IOException, UnexpectedApiResponseException {
-        // Iterate over the files for the table.
-        for (final CanvasDataFile dataFile : files) {
-            final File dest = new File(directory, dataFile.getFilename());
-            // Download the file.
-            dataFile.download(dest);
-        }
+    public Path getDownloadPath() {
+        return downloadPath;
     }
 
-    void setRestUtils(final RestUtils rest) {
-        if (files != null) {
-            for (final CanvasDataFile file : files) {
-                file.setRestUtils(rest);
-            }
-        }
+    public void setDownloadPath(Path downloadPath) {
+        this.downloadPath = downloadPath;
     }
-
 }

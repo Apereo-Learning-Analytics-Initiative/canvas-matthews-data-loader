@@ -1,35 +1,46 @@
 package unicon.matthews.dataloader.canvas.model;
 
-import java.io.File;
-import java.io.IOException;
+import java.nio.file.Path;
+import java.time.Instant;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Map;
 
-import unicon.matthews.dataloader.canvas.RestUtils;
-import unicon.matthews.dataloader.canvas.exception.UnexpectedApiResponseException;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import unicon.matthews.dataloader.canvas.util.EpochMillisecondsDeserializer;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CanvasDataDump {
-    private final String dumpId;
-    private final long sequence;
-    private final String accountId;
-    private final int numFiles;
-    private final boolean finished;
-    private final Date expires;
-    private final Date createdAt;
-    private final Date updatedAt;
-    private final Map<String, CanvasDataArtifact> artifactsByTable;
+
+    private String accountId;
+    @JsonDeserialize(using = EpochMillisecondsDeserializer.class)
+    private Instant expires;
+    private long sequence;
+    private Instant updatedAt;
+    private String schemaVersion;
+    private String dumpId;
+    private int numFiles;
+    private boolean finished;
+    private Instant createdAt;
+    private Map<String, CanvasDataArtifact> artifactsByTable;
+
+    @JsonIgnore
+    private Path downloadPath;
 
     @JsonCreator
-    public CanvasDataDump(@JsonProperty("dumpId") final String dumpId, @JsonProperty("sequence") final long sequence,
-            @JsonProperty("accountId") final String accountId, @JsonProperty("numFiles") final int numFiles,
-            @JsonProperty("finished") final boolean finished, @JsonProperty("expires") final Date expires,
-            @JsonProperty("createdAt") final Date createdAt, @JsonProperty("updatedAt") final Date updatedAt,
+    public CanvasDataDump(
+            @JsonProperty("accountId") final String accountId,
+            @JsonProperty("expires") final Instant expires,
+            @JsonProperty("sequence") final long sequence,
+            @JsonProperty("updatedAt") final Instant updatedAt,
+            @JsonProperty("schemaVersion") final String schemaVersion,
+            @JsonProperty("numFiles") final int numFiles,
+            @JsonProperty("createdAt") final Instant createdAt,
+            @JsonProperty("dumpId") final String dumpId,
+            @JsonProperty("finished") final boolean finished,
             @JsonProperty("artifactsByTable") final Map<String, CanvasDataArtifact> artifactsByTable) {
         this.dumpId = dumpId;
         this.sequence = sequence;
@@ -39,6 +50,7 @@ public class CanvasDataDump {
         this.expires = expires;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.schemaVersion = schemaVersion;
         this.artifactsByTable = artifactsByTable;
     }
 
@@ -62,35 +74,35 @@ public class CanvasDataDump {
         return finished;
     }
 
-    public Date getExpires() {
+    public Instant getExpires() {
         return expires;
     }
 
-    public Date getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public Instant getUpdatedAt() {
         return updatedAt;
     }
 
+    public String getSchemaVersion() {
+        return schemaVersion;
+    }
+
     public Map<String, CanvasDataArtifact> getArtifactsByTable() {
-        return Collections.unmodifiableMap(artifactsByTable);
-    }
-
-    public void downloadAllFiles(final File directory) throws IOException, UnexpectedApiResponseException {
-        for (final String table : artifactsByTable.keySet()) {
-            final CanvasDataArtifact artifact = artifactsByTable.get(table);
-            artifact.downloadAllFiles(new File(directory, table));
-        }
-    }
-
-    public void setRestUtils(final RestUtils rest) {
+        Map<String, CanvasDataArtifact> result = null;
         if (artifactsByTable != null) {
-            for (final CanvasDataArtifact artifact : artifactsByTable.values()) {
-                artifact.setRestUtils(rest);
-            }
+            result = Collections.unmodifiableMap(artifactsByTable);
         }
+        return result;
     }
 
+    public Path getDownloadPath() {
+        return downloadPath;
+    }
+
+    public void setDownloadPath(Path downloadPath) {
+        this.downloadPath = downloadPath;
+    }
 }
