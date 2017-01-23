@@ -50,6 +50,7 @@ public class CanvasDataDump {
         this.expires = expires;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.schemaVersion = schemaVersion;
         this.artifactsByTable = artifactsByTable;
     }
 
@@ -83,6 +84,10 @@ public class CanvasDataDump {
 
     public Instant getUpdatedAt() {
         return updatedAt;
+    }
+
+    public String getSchemaVersion() {
+        return schemaVersion;
     }
 
     public Map<String, CanvasDataArtifact> getArtifactsByTable() {
