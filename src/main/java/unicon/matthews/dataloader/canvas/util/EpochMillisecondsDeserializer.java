@@ -17,8 +17,7 @@ import java.time.Instant;
  */
 public class EpochMillisecondsDeserializer extends JsonDeserializer<Instant> {
     @Override
-    public Instant deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException,
-            JsonProcessingException {
+    public Instant deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         return Instant.ofEpochMilli(Long.parseLong(jsonParser.getText()));
     }
 }
