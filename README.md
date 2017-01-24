@@ -41,3 +41,9 @@ Note if you are not running Matthews on localhost with the default port (9966) y
 `````
 -Dmatthews.baseurl=<your matthews base url> // e.g., -Dmatthews.baseurl=https://lrw.cloudlrs.com
 `````
+
+### Lombok
+This project uses [Project Lombok](https://projectlombok.org) for data entities.
+Maven builds without issue.
+If you use an IDE, you will want to [install a Lombbok plugin (or enable support)](https://projectlombok.org/download.html)
+
