@@ -6,11 +6,14 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import unicon.matthews.dataloader.canvas.util.NullableDoubleFieldDeserializer;
-import unicon.matthews.dataloader.canvas.util.NullableIntegerFieldDeserializer;
-import unicon.matthews.dataloader.canvas.util.NullableIsoDateTimeWithOptionalFractionOfSecondDeserializer;
+import unicon.matthews.dataloader.canvas.io.deserialize.NullableDoubleFieldDeserializer;
+import unicon.matthews.dataloader.canvas.io.deserialize.NullableIntegerFieldDeserializer;
+import unicon.matthews.dataloader.canvas.io.deserialize.NullableIsoDateTimeWithOptionalFractionOfSecondDeserializer;
+import unicon.matthews.dataloader.canvas.io.deserialize.ReadableCanvasDumpArtifact;
 
 import java.time.Instant;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -37,7 +40,12 @@ import java.util.Optional;
         "assignment_id", "user_id", "submission_id", "enrollment_rollup_id",
         "quiz_submission_id_OR_quiz_submission_historical_id", "quiz_points_possible", "score_before_regrade",
         "fudge_points", "total_attempts", "extra_attempts", "extra_time", "time_taken"})
-public class CanvasQuizSubmissionFact {
+public class CanvasQuizSubmissionFact implements ReadableCanvasDumpArtifact {
+
+    @Override
+    public List<String> supports() {
+        return Arrays.asList("quiz_submission_fact", "quiz_submission_historical_fact");
+    }
 
     /**
      * <blockquote>Denotes the score for this submission. Its value would be NULL when they are in the 'preview',

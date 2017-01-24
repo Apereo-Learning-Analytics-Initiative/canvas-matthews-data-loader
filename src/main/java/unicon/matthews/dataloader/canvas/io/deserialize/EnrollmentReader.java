@@ -1,4 +1,4 @@
-package unicon.matthews.dataloader.canvas.reader;
+package unicon.matthews.dataloader.canvas.io.deserialize;
 
 import java.io.BufferedReader;
 import java.io.File;

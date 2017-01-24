@@ -1,16 +1,16 @@
-package unicon.matthews.dataloader.canvas.util;
+package unicon.matthews.dataloader.canvas.io.deserialize;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 
 /**
  * Deserializes an ISO Date Time which may contain fractions of a second but no time zone, and converts it to an Instant
@@ -21,7 +21,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class IsoDateTimeWithOptionalFractionOfSecondDeserializer extends JsonDeserializer<Instant> {
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss[.SSSSSS]");
+    DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd HH:mm:ss")
+            .appendFraction(ChronoField.MILLI_OF_SECOND, 0, 6, true).toFormatter();
 
     @Override
     public Instant deserialize(JsonParser parser, DeserializationContext deserializationContext) throws IOException {

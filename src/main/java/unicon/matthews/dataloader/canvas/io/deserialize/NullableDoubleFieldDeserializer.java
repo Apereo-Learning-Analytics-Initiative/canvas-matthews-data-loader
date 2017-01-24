@@ -1,14 +1,13 @@
-package unicon.matthews.dataloader.canvas.util;
+package unicon.matthews.dataloader.canvas.io.deserialize;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
 import java.io.IOException;
 import java.util.Optional;
 
-import static unicon.matthews.dataloader.canvas.util.CanvasDataFieldValueOptions.NULL;
+import static unicon.matthews.dataloader.canvas.io.deserialize.CanvasDataFieldValueOptions.NULL;
 
 /**
  * Deserializes a field of field of type Double which may be NULL, which is represented as <em>\N</em> in the Canvas

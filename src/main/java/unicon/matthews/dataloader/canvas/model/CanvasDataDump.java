@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import unicon.matthews.dataloader.canvas.util.EpochMillisecondsDeserializer;
+import unicon.matthews.dataloader.canvas.io.deserialize.EpochMillisecondsDeserializer;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CanvasDataDump {
