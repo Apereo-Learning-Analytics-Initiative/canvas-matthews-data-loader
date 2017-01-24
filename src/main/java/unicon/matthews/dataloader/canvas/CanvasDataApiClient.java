@@ -141,7 +141,7 @@ public class CanvasDataApiClient {
         List<CanvasDataDump> dumps = getResources("/api/account/self/dump", queryString,
                 CanvasDataDump[].class);
 
-        dumps.forEach(dump -> { updateDumpDownloadDirectory(dump); });
+        dumps.forEach(dump -> { updateDumpDownloadDirectories(dump); });
 
         if (options.isArtifactDetailsIncluded()) {
             dumps = getDetailedDumps(dumps);
@@ -170,7 +170,7 @@ public class CanvasDataApiClient {
             throws IOException, CanvasDataConfigurationException, UnexpectedApiResponseException {
         CanvasDataDump dump = getResource(String.format("/api/account/self/file/byDump/%s", id),
                 CanvasDataDump.class);
-        updateDumpDownloadDirectory(dump);
+        updateDumpDownloadDirectories(dump);
         if (options.isArtifactDownloadsEnabled()) {
             download(dump);
         }
@@ -188,7 +188,7 @@ public class CanvasDataApiClient {
     public CanvasDataDump getLatestDump(final Options options) throws IOException, CanvasDataConfigurationException,
             UnexpectedApiResponseException {
         CanvasDataDump dump = getResource("/api/account/self/file/latest", CanvasDataDump.class);
-        updateDumpDownloadDirectory(dump);
+        updateDumpDownloadDirectories(dump);
         if (options.isArtifactDownloadsEnabled()) {
             download(dump);
         }
@@ -213,7 +213,7 @@ public class CanvasDataApiClient {
 
         for (CanvasDataDump thinDump : thinDumps) {
             detailedDump = getDump(thinDump.getDumpId(), Options.NONE);
-            updateDumpDownloadDirectory(detailedDump);
+            updateDumpDownloadDirectories(detailedDump);
             detailedDumps.add(detailedDump);
         }
 
@@ -365,7 +365,6 @@ public class CanvasDataApiClient {
 
         for (final String table : dump.getArtifactsByTable().keySet()) {
             final CanvasDataArtifact artifact = dump.getArtifactsByTable().get(table);
-            artifact.setDownloadPath(Paths.get(dump.getDownloadPath().toString(), table));
             Files.createDirectories(artifact.getDownloadPath());
             download(artifact);
         }
@@ -380,7 +379,6 @@ public class CanvasDataApiClient {
         }
 
         for (final CanvasDataFile dataFile : artifact.getFiles()) {
-            dataFile.setDownloadPath(Paths.get(artifact.getDownloadPath().toString(), dataFile.getFilename()));
             download(dataFile);
         }
     }
@@ -406,10 +404,15 @@ public class CanvasDataApiClient {
         }
     }
 
-    private CanvasDataDump updateDumpDownloadDirectory(final CanvasDataDump dump) {
+    private CanvasDataDump updateDumpDownloadDirectories(final CanvasDataDump dump) {
         Path dumpDirectory = Paths.get(downloadsRootDirectory, String.format("%tF", dump.getCreatedAt().atZone(
                 ZoneOffset.UTC)));
         dump.setDownloadPath(dumpDirectory);
+        dump.getArtifactsByTable().values().stream().forEach(artifact -> {
+            artifact.setDownloadPath(Paths.get(dump.getDownloadPath().toString(), artifact.getTableName()));
+            artifact.getFiles().stream().forEach(file -> file.setDownloadPath(
+                    Paths.get(artifact.getDownloadPath().toString(), file.getFilename())));
+        });
         return dump;
     }
 
