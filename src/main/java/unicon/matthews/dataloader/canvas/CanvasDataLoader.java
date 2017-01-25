@@ -1,6 +1,8 @@
 package unicon.matthews.dataloader.canvas;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -49,12 +51,22 @@ public class CanvasDataLoader implements DataLoader {
 //              LocalDate.parse("2017-01-19"), Options.builder().withArtifactDownloads().build());
 
       // Example of getting latest dump, but no download
-      CanvasDataDump dump = canvasDataApiClient.getLatestDump(Options.NONE);
+//      CanvasDataDump dump = canvasDataApiClient.getLatestDump(Options.NONE);
+
+      // Example of getting latest dump, with download
+      CanvasDataDump dump = canvasDataApiClient.getLatestDump(Options.builder().withArtifactDownloads().build());
 
       // Dump passed to the processors below needs to have been downloaded, or they will fail.
 
+      // Example of filtering results to only include a specific artifact (when multiple available) and also to filter
+      // those which have end dates and are after a specified date.
       Collection<CanvasQuizSubmissionFact> quizSubmissionFacts = CanvasDataDumpReader.forType(
-              CanvasQuizSubmissionFact.class).read(dump);
+              CanvasQuizSubmissionFact.class)
+              .includeOnly(CanvasQuizSubmissionFact.Types.quiz_submission_fact)
+              .withFilter(canvasQuizSubmissionFact ->
+                      canvasQuizSubmissionFact.getDate().isPresent() ? canvasQuizSubmissionFact.getDate().get().isAfter(
+                              LocalDate.parse("2016-10-21").atStartOfDay(ZoneOffset.UTC).toInstant()) : false
+              ).read(dump);
       Collection<CanvasQuizSubmissionDimension> quizSubmissionDimensions = CanvasDataDumpReader.forType(
               CanvasQuizSubmissionDimension.class).read(dump);
       Collection<CanvasQuizSubmissionHistoricalDimension> quizSubmissionHistoricalDimensions =

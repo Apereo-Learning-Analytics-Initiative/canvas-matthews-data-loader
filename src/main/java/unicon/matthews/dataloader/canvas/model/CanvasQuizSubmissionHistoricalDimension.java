@@ -33,9 +33,18 @@ import java.util.List;
         "has_seen_results", "temporary_user_code", "created_at", "updated_at", "started_at", "finished_at", "due_at"})
 public class CanvasQuizSubmissionHistoricalDimension extends CanvasQuizSubmissionDimension {
 
+    public enum Types {
+        quiz_submission_historical_dim
+    }
+
+    /**
+     * Must override supports to designate the proper artifact types since the parent class implements
+     * <code>ReadableCanvasDumpArtifact</T></code> and by default the types are determined based on the type parameter.
+     * @return a list of Canvas data dump artifact names that this type supports
+     */
     @Override
-    public List<String> supports() {
-        return Arrays.asList("quiz_submission_historical_dim");
+    public List<? extends Enum> supports() {
+        return Arrays.asList(Types.values());
     }
 
     /**
@@ -60,6 +69,6 @@ public class CanvasQuizSubmissionHistoricalDimension extends CanvasQuizSubmissio
      * Defaults to 'untaken'.</blockquote>
      */
     public String getWorkFlowState() {
-        return super.workflowState;
+        return super.getWorkflowState();
     }
 }

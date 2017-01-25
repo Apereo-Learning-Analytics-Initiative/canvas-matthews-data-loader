@@ -10,8 +10,6 @@ import unicon.matthews.dataloader.canvas.io.deserialize.NullableIsoDateTimeWithO
 import unicon.matthews.dataloader.canvas.io.deserialize.ReadableCanvasDumpArtifact;
 
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -28,11 +26,10 @@ import java.util.Optional;
 @JsonPropertyOrder({ "id", "canvas_id", "quiz_id", "submission_id", "user_id", "workflow_state",
         "quiz_state_during_submission", "submission_scoring_policy", "submission_source", "has_seen_results",
         "temporary_user_code", "created_at", "updated_at", "started_at", "finished_at", "due_at"})
-public class CanvasQuizSubmissionDimension implements ReadableCanvasDumpArtifact {
+public class CanvasQuizSubmissionDimension implements ReadableCanvasDumpArtifact<CanvasQuizSubmissionDimension.Types> {
 
-    @Override
-    public List<String> supports() {
-        return Arrays.asList("quiz_submission_dim");
+    public enum Types {
+        quiz_submission_dim
     }
 
     /**

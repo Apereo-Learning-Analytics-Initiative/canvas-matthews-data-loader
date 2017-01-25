@@ -12,8 +12,6 @@ import unicon.matthews.dataloader.canvas.io.deserialize.NullableIsoDateTimeWithO
 import unicon.matthews.dataloader.canvas.io.deserialize.ReadableCanvasDumpArtifact;
 
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -40,11 +38,11 @@ import java.util.Optional;
         "assignment_id", "user_id", "submission_id", "enrollment_rollup_id",
         "quiz_submission_id_OR_quiz_submission_historical_id", "quiz_points_possible", "score_before_regrade",
         "fudge_points", "total_attempts", "extra_attempts", "extra_time", "time_taken"})
-public class CanvasQuizSubmissionFact implements ReadableCanvasDumpArtifact {
+public class CanvasQuizSubmissionFact implements ReadableCanvasDumpArtifact<CanvasQuizSubmissionFact.Types> {
 
-    @Override
-    public List<String> supports() {
-        return Arrays.asList("quiz_submission_fact", "quiz_submission_historical_fact");
+    public enum Types {
+        quiz_submission_fact,
+        quiz_submission_historical_fact
     }
 
     /**
