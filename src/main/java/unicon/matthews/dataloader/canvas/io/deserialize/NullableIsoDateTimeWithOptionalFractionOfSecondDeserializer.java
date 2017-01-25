@@ -1,17 +1,14 @@
-package unicon.matthews.dataloader.canvas.util;
+package unicon.matthews.dataloader.canvas.io.deserialize;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.Optional;
 
-import static unicon.matthews.dataloader.canvas.util.CanvasDataFieldValueOptions.NULL;
+import static unicon.matthews.dataloader.canvas.io.deserialize.CanvasDataFieldValueOptions.NULL;
 
 /**
  * Deserializes an optional ISO Date Time field which may contain fractions of a second but no time zone, and converts

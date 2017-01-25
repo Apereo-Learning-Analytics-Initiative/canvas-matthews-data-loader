@@ -1,4 +1,4 @@
-package unicon.matthews.dataloader.canvas.util;
+package unicon.matthews.dataloader.canvas.io.deserialize;
 
 public enum CanvasDataFieldValueOptions {
 
@@ -6,7 +6,7 @@ public enum CanvasDataFieldValueOptions {
 
     private final String fieldValue;
 
-    private CanvasDataFieldValueOptions(String fieldValue) {
+    CanvasDataFieldValueOptions(String fieldValue) {
         this.fieldValue = fieldValue;
     }
 
