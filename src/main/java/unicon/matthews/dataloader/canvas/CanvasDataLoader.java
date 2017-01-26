@@ -1,7 +1,6 @@
 package unicon.matthews.dataloader.canvas;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,6 +20,7 @@ import unicon.matthews.dataloader.canvas.io.deserialize.EnrollmentReader;
 import unicon.matthews.dataloader.canvas.io.deserialize.LineItemReader;
 import unicon.matthews.dataloader.canvas.io.deserialize.UserReader;
 import unicon.matthews.dataloader.canvas.model.CanvasDataDump;
+import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionFact;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionHistoricalDimension;
@@ -60,6 +60,8 @@ public class CanvasDataLoader implements DataLoader {
       CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-22"), Options.NONE);
 
       // Dump passed to the processors below needs to have been downloaded, or they will fail.
+
+      Collection<CanvasPageRequest> pageRequests = CanvasDataDumpReader.forType(CanvasPageRequest.class).read(dump);
 
       // Example of filtering results to only include a specific artifact (when multiple available) and also to filter
       // those which have end dates and are after a specified date.
