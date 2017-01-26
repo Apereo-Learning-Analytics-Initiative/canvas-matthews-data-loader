@@ -95,48 +95,7 @@ public class CanvasDataApiClient {
     public List<CanvasDataDump> getDumps(final LocalDate startDate, final LocalDate endDate, Options options)
             throws IOException, CanvasDataConfigurationException, UnexpectedApiResponseException {
 
-        ZonedDateTime currentDate = ZonedDateTime.now(ZoneOffset.UTC.normalized());
-        ZonedDateTime startDateUTC = ZonedDateTime.of(startDate, LocalTime.MIDNIGHT, ZoneOffset.UTC.normalized());
-        ZonedDateTime endDateUTC = ZonedDateTime.of(endDate, LocalTime.MIDNIGHT, ZoneOffset.UTC.normalized());
-        if (endDateUTC.isAfter(currentDate)) {
-            throw new RuntimeException(String.format("End date for the dump range must not exceed today's date. " +
-                    "Invalid date provided: %tF", endDateUTC));
-        }
-        if (endDateUTC.isBefore(startDateUTC)) {
-            throw new RuntimeException(String.format("End date for the dump range must be the same or after the " +
-                    "start date. Invalid date range provided. Start: %tF, End: %tF", startDateUTC, endDateUTC));
-        }
-        Duration dumpsPeriod = Duration.between(startDateUTC, endDateUTC);
-        long numberOfDumps = dumpsPeriod.toDays() + 1; // To be inclusive of the end date
-        if (numberOfDumps > 100) {
-            throw new RuntimeException(String.format("Canvas appears to only support up to 100 response items, " +
-                    "returning an HTTP 400 response if exceeded. Please reduce your request range. Current " +
-                    "request included %d days", numberOfDumps));
-        }
-
-        CanvasDataDump latestDump = getLatestDump(Options.NONE); // Dumps typically occur between midnight and 2am UTC
-        long latestSequenceNumber = latestDump.getSequence();
-        Instant latestDumpCreatedDate = latestDump.getCreatedAt();
-        ZonedDateTime latestDumpDateUTC = latestDumpCreatedDate.atZone(ZoneOffset.UTC);
-        ZonedDateTime firstSequenceDumpDateMidnightUTC = latestDumpDateUTC.minusDays(
-                latestSequenceNumber - 1).truncatedTo(ChronoUnit.DAYS);
-
-        if (startDateUTC.isBefore(firstSequenceDumpDateMidnightUTC)) {
-            throw new RuntimeException(String.format("The requested canvas dump range exceeds what is available. " +
-                    "There are currently %d dumps in the sequence. Unless there is more than one dump per day " +
-                    "(which should not be the case), your initial dump was made on %tF. Please adjust your start date " +
-                    "accordingly.", latestSequenceNumber, firstSequenceDumpDateMidnightUTC));
-        }
-
-        if (endDateUTC.isAfter(latestDumpDateUTC)) {
-            throw new RuntimeException(String.format("The latest canvas dump available is for %tF, so please adjust " +
-                    "your end date accordingly.", latestDumpDateUTC));
-        }
-
-        Duration dumpStartOffsetPeriod = Duration.between(firstSequenceDumpDateMidnightUTC, startDateUTC);
-        long startAfterSequenceNumber = dumpStartOffsetPeriod.toDays();
-
-        String queryString = String.format("after=%d&limit=%d", startAfterSequenceNumber, numberOfDumps);
+        String queryString = determineDumpsQueryStringFromDateRange(startDate, endDate);
 
         List<CanvasDataDump> dumps = getResources("/api/account/self/dump", queryString,
                 CanvasDataDump[].class);
@@ -152,6 +111,47 @@ public class CanvasDataApiClient {
         }
 
         return dumps;
+    }
+
+    /**
+     * Returns the Canvas account metadata dump for the specified date, and optionally downloads all of the dump
+     * artifacts.
+     *
+     * @param date Canvas data dump date (Time zone UTC)
+     * @param options Canvas data dump fetch options such as whether to download its supporting artifacts. Artifact
+     *                details are always included with this call, even if not explicitly specified with options to be
+     *                consistent with {@code #getLatestDump} which uses a different API that always returns the
+     *                details.
+     * @return the Canvas account metadata dump for the specified identifier
+     * @throws IOException
+     * @throws CanvasDataConfigurationException
+     * @throws UnexpectedApiResponseException
+     */
+    public CanvasDataDump getDump(final LocalDate date, final Options options)
+            throws IOException, CanvasDataConfigurationException, UnexpectedApiResponseException {
+
+        String queryString = determineDumpsQueryStringFromDateRange(date, date);
+
+        List<CanvasDataDump> dumps = getResources("/api/account/self/dump", queryString,
+                CanvasDataDump[].class);
+
+        if (dumps.size() != 1) {
+            throw new IllegalStateException(String.format("Canvas data dump for %tF could not be retrieved using " +
+                    "query string '%s' (Result contained %d dumps)", date, queryString, dumps.size()));
+        }
+
+        CanvasDataDump dump = dumps.get(0);
+
+        updateDumpDownloadDirectories(dump);
+
+        // Always fetch the details to be consistent with the getLatestDump
+        dump = getDetailedDumps(Arrays.asList(dump)).get(0);
+
+        if (options.isArtifactDownloadsEnabled()) {
+            download(dump);
+        }
+
+        return dump;
     }
 
     /**
@@ -286,6 +286,53 @@ public class CanvasDataApiClient {
                 responseEntity.getStatusCode());
 
         return response;
+    }
+
+    private String determineDumpsQueryStringFromDateRange(final LocalDate startDate, final LocalDate endDate)
+            throws IOException, CanvasDataConfigurationException, UnexpectedApiResponseException {
+
+        ZonedDateTime currentDate = ZonedDateTime.now(ZoneOffset.UTC.normalized());
+        ZonedDateTime startDateUTC = ZonedDateTime.of(startDate, LocalTime.MIDNIGHT, ZoneOffset.UTC.normalized());
+        ZonedDateTime endDateUTC = ZonedDateTime.of(endDate, LocalTime.MIDNIGHT, ZoneOffset.UTC.normalized());
+        if (endDateUTC.isAfter(currentDate)) {
+            throw new RuntimeException(String.format("End date for the dump range must not exceed today's date. " +
+                    "Invalid date provided: %tF", endDateUTC));
+        }
+        if (endDateUTC.isBefore(startDateUTC)) {
+            throw new RuntimeException(String.format("End date for the dump range must be the same or after the " +
+                    "start date. Invalid date range provided. Start: %tF, End: %tF", startDateUTC, endDateUTC));
+        }
+        Duration dumpsPeriod = Duration.between(startDateUTC, endDateUTC);
+        long numberOfDumps = dumpsPeriod.toDays() + 1; // To be inclusive of the end date
+        if (numberOfDumps > 100) {
+            throw new RuntimeException(String.format("Canvas appears to only support up to 100 response items, " +
+                    "returning an HTTP 400 response if exceeded. Please reduce your request range. Current " +
+                    "request included %d days", numberOfDumps));
+        }
+
+        CanvasDataDump latestDump = getLatestDump(Options.NONE); // Dumps typically occur between midnight and 2am UTC
+        long latestSequenceNumber = latestDump.getSequence();
+        Instant latestDumpCreatedDate = latestDump.getCreatedAt();
+        ZonedDateTime latestDumpDateUTC = latestDumpCreatedDate.atZone(ZoneOffset.UTC);
+        ZonedDateTime firstSequenceDumpDateMidnightUTC = latestDumpDateUTC.minusDays(
+                latestSequenceNumber - 1).truncatedTo(ChronoUnit.DAYS);
+
+        if (startDateUTC.isBefore(firstSequenceDumpDateMidnightUTC)) {
+            throw new RuntimeException(String.format("The requested canvas dump range exceeds what is available. " +
+                    "There are currently %d dumps in the sequence. Unless there is more than one dump per day " +
+                    "(which should not be the case), your initial dump was made on %tF. Please adjust your start date " +
+                    "accordingly.", latestSequenceNumber, firstSequenceDumpDateMidnightUTC));
+        }
+
+        if (endDateUTC.isAfter(latestDumpDateUTC)) {
+            throw new RuntimeException(String.format("The latest canvas dump available is for %tF, so please adjust " +
+                    "your end date accordingly.", latestDumpDateUTC));
+        }
+
+        Duration dumpStartOffsetPeriod = Duration.between(firstSequenceDumpDateMidnightUTC, startDateUTC);
+        long startAfterSequenceNumber = dumpStartOffsetPeriod.toDays();
+
+        return String.format("after=%d&limit=%d", startAfterSequenceNumber, numberOfDumps);
     }
 
     private HttpHeaders buildHeaders(final String resourcePath, final String queryParams, final HttpMethod httpMethod)

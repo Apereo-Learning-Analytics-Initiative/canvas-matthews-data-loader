@@ -94,6 +94,8 @@ public class CanvasDataDump {
         Map<String, CanvasDataArtifact> result = null;
         if (artifactsByTable != null) {
             result = Collections.unmodifiableMap(artifactsByTable);
+        } else {
+            result = Collections.emptyMap();
         }
         return result;
     }
