@@ -54,7 +54,10 @@ public class CanvasDataLoader implements DataLoader {
 //      CanvasDataDump dump = canvasDataApiClient.getLatestDump(Options.NONE);
 
       // Example of getting latest dump, with download
-      CanvasDataDump dump = canvasDataApiClient.getLatestDump(Options.builder().withArtifactDownloads().build());
+//      CanvasDataDump dump = canvasDataApiClient.getLatestDump(Options.builder().withArtifactDownloads().build());
+
+      // Example of getting a single dump by date, without download.
+      CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-22"), Options.NONE);
 
       // Dump passed to the processors below needs to have been downloaded, or they will fail.
 
