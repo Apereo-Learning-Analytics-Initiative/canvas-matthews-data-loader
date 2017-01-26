@@ -12,8 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import unicon.matthews.caliper.Event;
 import unicon.matthews.dataloader.DataLoader;
 import unicon.matthews.dataloader.MatthewsClient;
+import unicon.matthews.dataloader.canvas.io.converter.CanvasConversionService;
 import unicon.matthews.dataloader.canvas.io.deserialize.CanvasDataDumpReader;
 import unicon.matthews.dataloader.canvas.io.deserialize.ClassReader;
 import unicon.matthews.dataloader.canvas.io.deserialize.EnrollmentReader;
@@ -41,6 +43,9 @@ public class CanvasDataLoader implements DataLoader {
   @Autowired
   private CanvasDataApiClient canvasDataApiClient;
 
+  @Autowired
+  CanvasConversionService canvasConversionService;
+
   @Override
   public void run() {
     
@@ -57,11 +62,14 @@ public class CanvasDataLoader implements DataLoader {
 //      CanvasDataDump dump = canvasDataApiClient.getLatestDump(Options.builder().withArtifactDownloads().build());
 
       // Example of getting a single dump by date, without download.
-      CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-22"), Options.NONE);
+      CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-22"),
+              Options.builder().withArtifactDownloads().build());
 
       // Dump passed to the processors below needs to have been downloaded, or they will fail.
 
       Collection<CanvasPageRequest> pageRequests = CanvasDataDumpReader.forType(CanvasPageRequest.class).read(dump);
+
+      List<Event> events = canvasConversionService.convertPageRequests(pageRequests);
 
       // Example of filtering results to only include a specific artifact (when multiple available) and also to filter
       // those which have end dates and are after a specified date.
@@ -76,6 +84,7 @@ public class CanvasDataLoader implements DataLoader {
               CanvasQuizSubmissionDimension.class).read(dump);
       Collection<CanvasQuizSubmissionHistoricalDimension> quizSubmissionHistoricalDimensions =
               CanvasDataDumpReader.forType(CanvasQuizSubmissionHistoricalDimension.class).read(dump);
+
 
       Map<String, unicon.matthews.oneroster.Class> classMap = new HashMap<>();
       Map<String, User> userMap = new HashMap<>();
