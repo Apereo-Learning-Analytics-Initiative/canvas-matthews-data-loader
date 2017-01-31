@@ -12,14 +12,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import unicon.matthews.caliper.Event;
 import unicon.matthews.dataloader.DataLoader;
 import unicon.matthews.dataloader.MatthewsClient;
+import unicon.matthews.dataloader.canvas.io.converter.CanvasConversionService;
+import unicon.matthews.dataloader.canvas.io.converter.SupportingEntities;
 import unicon.matthews.dataloader.canvas.io.deserialize.CanvasDataDumpReader;
 import unicon.matthews.dataloader.canvas.io.deserialize.ClassReader;
 import unicon.matthews.dataloader.canvas.io.deserialize.EnrollmentReader;
 import unicon.matthews.dataloader.canvas.io.deserialize.LineItemReader;
 import unicon.matthews.dataloader.canvas.io.deserialize.UserReader;
 import unicon.matthews.dataloader.canvas.model.CanvasDataDump;
+import unicon.matthews.dataloader.canvas.model.CanvasDataPseudonymDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionFact;
@@ -41,6 +45,12 @@ public class CanvasDataLoader implements DataLoader {
   @Autowired
   private CanvasDataApiClient canvasDataApiClient;
 
+  @Autowired
+  CanvasConversionService canvasConversionService;
+
+  // Sensor ID which indicates origin from this loader and the data origin (Dump vs potential of pulling via Redshift)
+  private static final String SENSOR_ID_DUMP_READER = "canvas-matthews-data-loader/dump-reader";
+
   @Override
   public void run() {
     
@@ -57,29 +67,19 @@ public class CanvasDataLoader implements DataLoader {
 //      CanvasDataDump dump = canvasDataApiClient.getLatestDump(Options.builder().withArtifactDownloads().build());
 
       // Example of getting a single dump by date, without download.
-      CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-22"), Options.NONE);
+      CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-22"),
+              Options.builder().withArtifactDownloads().build());
+
+      // Uncomment and use this one once you have the dump downloded and comment above.
+//      CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-22"),Options.NONE);
 
       // Dump passed to the processors below needs to have been downloaded, or they will fail.
 
-      Collection<CanvasPageRequest> pageRequests = CanvasDataDumpReader.forType(CanvasPageRequest.class).read(dump);
-
-      // Example of filtering results to only include a specific artifact (when multiple available) and also to filter
-      // those which have end dates and are after a specified date.
-      Collection<CanvasQuizSubmissionFact> quizSubmissionFacts = CanvasDataDumpReader.forType(
-              CanvasQuizSubmissionFact.class)
-              .includeOnly(CanvasQuizSubmissionFact.Types.quiz_submission_fact)
-              .withFilter(canvasQuizSubmissionFact ->
-                      canvasQuizSubmissionFact.getDate().isPresent() ? canvasQuizSubmissionFact.getDate().get().isAfter(
-                              LocalDate.parse("2016-10-21").atStartOfDay(ZoneOffset.UTC).toInstant()) : false
-              ).read(dump);
-      Collection<CanvasQuizSubmissionDimension> quizSubmissionDimensions = CanvasDataDumpReader.forType(
-              CanvasQuizSubmissionDimension.class).read(dump);
-      Collection<CanvasQuizSubmissionHistoricalDimension> quizSubmissionHistoricalDimensions =
-              CanvasDataDumpReader.forType(CanvasQuizSubmissionHistoricalDimension.class).read(dump);
-
       Map<String, unicon.matthews.oneroster.Class> classMap = new HashMap<>();
       Map<String, User> userMap = new HashMap<>();
-      
+      Map<String, Enrollment> enrollmentMap = new HashMap<>();
+      Map<String, LineItem> lineItemMap = new HashMap<>();
+
       ClassReader courseSectionReader = new ClassReader(dump.getDownloadPath().toString());
       Collection<unicon.matthews.oneroster.Class> classes = courseSectionReader.read();
       if (classes != null) {
@@ -103,17 +103,53 @@ public class CanvasDataLoader implements DataLoader {
       if (enrollments != null) {
         for (Enrollment enrollment : enrollments) {
           matthewsClient.postEnrollment(enrollment);
+          enrollmentMap.put(enrollment.getSourcedId(), enrollment);
         }
       }
       
       LineItemReader lineItemReader = new LineItemReader(dump.getDownloadPath().toString(), classMap);
       Collection<LineItem> lineItems = lineItemReader.read();
       if (lineItems != null) {
-        for (LineItem li : lineItems) {
-          matthewsClient.postLineItem(li);
+        for (LineItem lineItem : lineItems) {
+          matthewsClient.postLineItem(lineItem);
+          lineItemMap.put(lineItem.getSourcedId(), lineItem);
         }
       }
-      
+
+      Collection<CanvasDataPseudonymDimension> pseudonymDimensions = CanvasDataDumpReader.forType(
+              CanvasDataPseudonymDimension.class).read(dump);
+
+      Collection<CanvasPageRequest> pageRequests = CanvasDataDumpReader.forType(CanvasPageRequest.class).read(dump);
+
+      SupportingEntities supportingEntities = SupportingEntities.builder()
+              .classes(classMap)
+              .users(userMap)
+              .pseudonymDimensions(pseudonymDimensions)
+              .enrollments(enrollmentMap)
+              .lineItems(lineItemMap)
+              .pageRequests(pageRequests)
+              .build();
+
+      // Example of filtering results to only include a specific artifact (when multiple available) and also to filter
+      // those which have end dates and are after a specified date.
+      Collection<CanvasQuizSubmissionFact> quizSubmissionFacts = CanvasDataDumpReader.forType(
+              CanvasQuizSubmissionFact.class)
+              .includeOnly(CanvasQuizSubmissionFact.Types.quiz_submission_fact)
+              .withFilter(canvasQuizSubmissionFact ->
+                      canvasQuizSubmissionFact.getDate().isPresent() ? canvasQuizSubmissionFact.getDate().get().isAfter(
+                              LocalDate.parse("2016-10-21").atStartOfDay(ZoneOffset.UTC).toInstant()) : false
+              ).read(dump);
+      Collection<CanvasQuizSubmissionDimension> quizSubmissionDimensions = CanvasDataDumpReader.forType(
+              CanvasQuizSubmissionDimension.class).read(dump);
+      Collection<CanvasQuizSubmissionHistoricalDimension> quizSubmissionHistoricalDimensions =
+              CanvasDataDumpReader.forType(CanvasQuizSubmissionHistoricalDimension.class).read(dump);
+
+      // Quiz events are incomplete - need to add converter(s) and conversion method in CanvasConversionService
+
+      // TODO - Need to develop more Page Request Event converters
+      List<Event> events = canvasConversionService.convertPageRequests(pageRequests, supportingEntities);
+      matthewsClient.postEvents(events, SENSOR_ID_DUMP_READER);
+
     } 
     catch (Exception e) {
       // TODO Auto-generated catch block
