@@ -6,13 +6,20 @@ import unicon.matthews.caliper.Entity;
 import unicon.matthews.caliper.Event;
 import unicon.matthews.caliper.Group;
 import unicon.matthews.caliper.Membership;
+import unicon.matthews.dataloader.canvas.model.CanvasDataPseudonymDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
 import unicon.matthews.dataloader.util.Maps;
+import unicon.matthews.oneroster.Enrollment;
+import unicon.matthews.oneroster.User;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Optional;
 import java.util.UUID;
 
+import static unicon.matthews.dataloader.canvas.io.converter.EventBuilderUtils.usingCourseSectionGroup;
+import static unicon.matthews.dataloader.canvas.io.converter.EventBuilderUtils.usingMembership;
+import static unicon.matthews.dataloader.canvas.io.converter.EventBuilderUtils.usingPersonType;
 import static unicon.matthews.dataloader.util.Maps.entry;
 
 /**
@@ -20,53 +27,57 @@ import static unicon.matthews.dataloader.util.Maps.entry;
  * events.
  */
 @Component
-public class CanvasPageRequestToLogoutEventConverter implements Converter<CanvasPageRequest, Event> {
+public class CanvasPageRequestToLogoutEventConverter implements Converter<CanvasPageRequest, Optional<Event>> {
 
     @Override
     public boolean supports(CanvasPageRequest source) {
         return source.getWebApplicationController().equalsIgnoreCase("login") &&
-                source.getWebApplicationAction().equalsIgnoreCase("destroy");
+                source.getWebApplicationAction().equalsIgnoreCase("destroy") &&
+                source.getHttpStatus().equals("200");
     }
 
-    public Event convert(CanvasPageRequest canvasPageRequest) {
+    @Override
+    public Optional<Event> convert(CanvasPageRequest request, SupportingEntities supportingEntities) {
 
-        Event event = new Event.Builder()
-                .withId(UUID.randomUUID().toString())
-                .withType("http://purl.imsglobal.org/caliper/v1/SessionEvent")
-                .withAgent(new Agent.Builder()
-                        .withId(canvasPageRequest.getUserId().get().toString())
-                        .withType("http://purl.imsglobal.org/caliper/v1/Person")
-                        .withExtensions(Maps.ofEntries(
-                                entry("real_user_id", String.valueOf(canvasPageRequest.getRealUserId().orElse(null))),
-                                entry("user_login", "TBD - Where is this?"),
-                                entry("root_account_id", canvasPageRequest.getRootAccountId().toString()),
-                                entry("root_account_lti_guid", "TBD - Where is this?")))
-                        .build())
-                .withAction("http://purl.imsglobal.org/vocab/caliper/v1/action#LoggedOut")
-                .withObject(new Entity.Builder()
-                        .withId("HOSTNAME?")
-                        .withType("http://purl.imsglobal.org/caliper/v1/SoftwareApplication")
-                        .withExtensions(Maps.ofEntries(
-                                entry("redirect_url", "REDIRECT_URL?")))
-                        .build())
-                .withEventTime(LocalDateTime.ofInstant(canvasPageRequest.getTimestamp(), ZoneId.of("UTC")))
-                .withEdApp(new Agent.Builder()
-                        .withId("HOSTNAME?")
-                        .withType("http://purl.imsglobal.org/caliper/v1/SoftwareApplication")
-                        .build())
-                .withGroup(new Group.Builder()
-                        .withId(String.valueOf(canvasPageRequest.getCourseId().orElse(null)))
-                        .withType("http://purl.imsglobal.org/caliper/v1/CourseSection")
-                        .withExtensions(Maps.ofEntries(
-                                entry("context_type", "TBD")))
-                        .build())
-                .withMembership(new Membership.Builder()
-                        .withId("FU")
-                        .withType("http: //purl.imsglobal.org/caliper/v1/Membership")
-                        .build())
-                .withFederatedSession(canvasPageRequest.getSessionId()) // Use FederatedSession because spec does not have a separate session field.
-                .build();
+        Optional<Event> result = null;
 
-        return event;
+        String userId = request.getUserId().get().toString();
+
+        User user = supportingEntities.getUsers().get(userId);
+
+        CanvasDataPseudonymDimension pseudonym = supportingEntities.getPseudonymDimensions().stream().filter(
+                    p -> p.getUserId().toString().equalsIgnoreCase(userId)
+            ).findFirst().get();
+
+        String userLogin = pseudonym.getUniqueName();
+        String rootAccountId = request.getRootAccountId().toString();
+
+        LocalDateTime eventTime = LocalDateTime.ofInstant(request.getTimestamp(), ZoneId.of("UTC"));
+
+        Event event;
+        Enrollment enrollment = null;
+        if (request.getCourseId().isPresent()) {
+            String courseId = request.getCourseId().get().toString();
+            enrollment = supportingEntities.getEnrollments().values().stream().filter(
+                    e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)).findFirst().get();
+
+            event = EventBuilderUtils.usingLogoutEventType()
+                    .withEventTime(eventTime)
+                    .withAgent(usingPersonType(user, userId, userLogin, rootAccountId).build())
+                    .withGroup(usingCourseSectionGroup(enrollment).build())
+                    .withMembership(usingMembership(enrollment).build())
+                    .withFederatedSession(request.getSessionId())
+                    .build();
+        } else { // Omit the optional group and membership info if we have no enrollment info
+            event = EventBuilderUtils.usingLogoutEventType()
+                    .withEventTime(eventTime)
+                    .withAgent(usingPersonType(user, userId, userLogin, rootAccountId).build())
+                    .withFederatedSession(request.getSessionId())
+                    .build();
+        }
+
+        result = Optional.of(event);
+
+        return result;
     }
 }

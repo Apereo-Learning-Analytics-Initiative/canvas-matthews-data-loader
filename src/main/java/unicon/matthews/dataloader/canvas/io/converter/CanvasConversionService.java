@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import unicon.matthews.caliper.Event;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
-import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmission;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,21 +18,33 @@ public class CanvasConversionService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private List<Converter<CanvasPageRequest, Event>> pageRequestToEventConverters;
+    private List<Converter<CanvasPageRequest, Optional<Event>> >pageRequestToEventConverters;
 
-    public List<Event> convertPageRequests(Collection<CanvasPageRequest> sourceItems) {
+    public List<Event> convertPageRequests(Collection<CanvasPageRequest> sourceItems,
+            SupportingEntities supportingEntities) {
 
         List<Event> events = new ArrayList<>();
 
+        Optional<Event> event = null;
+
         for (CanvasPageRequest sourceItem : sourceItems) {
 
-            Optional<Converter<CanvasPageRequest, Event>> selectedConverter =
+            Optional<Converter<CanvasPageRequest, Optional<Event>>> selectedConverter =
                     pageRequestToEventConverters.stream().filter(converter -> converter.supports(sourceItem)).findFirst();
 
             if (selectedConverter.isPresent()) {
-                events.add(selectedConverter.get().convert(sourceItem));
-                logger.debug("Page Request Conversion PROCESSED by converter {} : {}",
-                        selectedConverter.get().getClass().getSimpleName(), sourceItem.toString());
+
+                event = selectedConverter.get().convert(sourceItem, supportingEntities);
+
+                if (event.isPresent()) {
+                    events.add(event.get());
+                    logger.debug("Page Request Conversion PROCESSED by converter {} : From {} > EVENT: {}",
+                            selectedConverter.get().getClass().getSimpleName(), sourceItem.toString(),
+                            event.get().toString());
+                } else {
+                    logger.debug("Page Request Conversion PROCESSED by converter {} : From {} > NO EVENT",
+                            selectedConverter.get().getClass().getSimpleName(), sourceItem.toString());
+                }
             } else {
                 logger.debug("Page Request Conversion SKIP request with no matching converter: {}", sourceItem.toString());
             }
@@ -41,5 +52,7 @@ public class CanvasConversionService {
 
         return events;
     }
+
+
 
 }
