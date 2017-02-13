@@ -1,0 +1,461 @@
+{
+  "accountId" : "9714~1",
+  "expires" : "2017-03-23T01:27:43.211Z",
+  "sequence" : 102,
+  "updatedAt" : "2017-01-22T01:27:44.528Z",
+  "schemaVersion" : "1.13.2",
+  "numFiles" : 56,
+  "createdAt" : "2017-01-22T01:27:43.211Z",
+  "dumpId" : "45f6b756-c143-4ce0-87c2-f4a927d2f931",
+  "finished" : true,
+  "artifactsByTable" : {
+    "account_dim" : {
+      "tableName" : "account_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/account_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=XFQx07EGjGcbEl%2FIJJB2XfckZ9A%3D&response-content-disposition=inline%3B%20filename%3D%22account_dim-00000-8e13a45a.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "account_dim-00000-8e13a45a.gz"
+      } ]
+    },
+    "assignment_dim" : {
+      "tableName" : "assignment_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/assignment_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=q6piEyr0NyAjNZq1TfmoNuCQVW0%3D&response-content-disposition=inline%3B%20filename%3D%22assignment_dim-00000-69dd01f9.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "assignment_dim-00000-69dd01f9.gz"
+      } ]
+    },
+    "assignment_fact" : {
+      "tableName" : "assignment_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/assignment_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=MgqkcJbcE2C8q3o1s%2BZMG3Futzc%3D&response-content-disposition=inline%3B%20filename%3D%22assignment_fact-00000-4486cb26.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "assignment_fact-00000-4486cb26.gz"
+      } ]
+    },
+    "assignment_group_dim" : {
+      "tableName" : "assignment_group_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/assignment_group_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=F29uTTl7aiNnAqXtU09XmZvruM8%3D&response-content-disposition=inline%3B%20filename%3D%22assignment_group_dim-00000-f0c57901.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "assignment_group_dim-00000-f0c57901.gz"
+      } ]
+    },
+    "assignment_group_fact" : {
+      "tableName" : "assignment_group_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/assignment_group_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=IxdF3jJrWOCEwsf%2BJhSad6jFdCA%3D&response-content-disposition=inline%3B%20filename%3D%22assignment_group_fact-00000-8c52bf0f.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "assignment_group_fact-00000-8c52bf0f.gz"
+      } ]
+    },
+    "assignment_group_rule_dim" : {
+      "tableName" : "assignment_group_rule_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/assignment_group_rule_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=w0zKTn3NUZTAnaYs43Qg9sjR%2Fsc%3D&response-content-disposition=inline%3B%20filename%3D%22assignment_group_rule_dim-00000-89dbfa5b.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "assignment_group_rule_dim-00000-89dbfa5b.gz"
+      } ]
+    },
+    "assignment_override_dim" : {
+      "tableName" : "assignment_override_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/assignment_override_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=dLVjAacS%2BE57sHy1GwxOHvdwvr8%3D&response-content-disposition=inline%3B%20filename%3D%22assignment_override_dim-00000-cb255fab.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "assignment_override_dim-00000-cb255fab.gz"
+      } ]
+    },
+    "assignment_override_fact" : {
+      "tableName" : "assignment_override_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/assignment_override_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=on73mcygfKp%2F%2BEKjT5ASsfllJfA%3D&response-content-disposition=inline%3B%20filename%3D%22assignment_override_fact-00000-2e81098d.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "assignment_override_fact-00000-2e81098d.gz"
+      } ]
+    },
+    "assignment_rule_dim" : {
+      "tableName" : "assignment_rule_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/assignment_rule_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=9bQrttI%2BHY0kDj5mWM9z%2FX6G6kk%3D&response-content-disposition=inline%3B%20filename%3D%22assignment_rule_dim-00000-38faaf5c.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "assignment_rule_dim-00000-38faaf5c.gz"
+      } ]
+    },
+    "communication_channel_dim" : {
+      "tableName" : "communication_channel_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/communication_channel_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=OhsL8GmxjWUOUFRzzOuU%2BZx6fNc%3D&response-content-disposition=inline%3B%20filename%3D%22communication_channel_dim-00000-079f6060.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "communication_channel_dim-00000-079f6060.gz"
+      } ]
+    },
+    "communication_channel_fact" : {
+      "tableName" : "communication_channel_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/communication_channel_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=IY8%2FxvGgRxbExXsa3NntOJIGOMU%3D&response-content-disposition=inline%3B%20filename%3D%22communication_channel_fact-00000-be3ff16e.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "communication_channel_fact-00000-be3ff16e.gz"
+      } ]
+    },
+    "conversation_dim" : {
+      "tableName" : "conversation_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/conversation_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=wT9gqDhEW%2FjA9k7ursllx8idM0Q%3D&response-content-disposition=inline%3B%20filename%3D%22conversation_dim-00000-5472d90a.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "conversation_dim-00000-5472d90a.gz"
+      } ]
+    },
+    "conversation_message_dim" : {
+      "tableName" : "conversation_message_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/conversation_message_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=72oV4GeQlZWNngZo%2BM%2Bh41i1mnk%3D&response-content-disposition=inline%3B%20filename%3D%22conversation_message_dim-00000-8de67203.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "conversation_message_dim-00000-8de67203.gz"
+      } ]
+    },
+    "conversation_message_participant_fact" : {
+      "tableName" : "conversation_message_participant_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/conversation_message_participant_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=%2FKZ6OUsJV0icq1tRRGrF0rjn0wM%3D&response-content-disposition=inline%3B%20filename%3D%22conversation_message_participant_fact-00000-92cbfd8c.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "conversation_message_participant_fact-00000-92cbfd8c.gz"
+      } ]
+    },
+    "course_dim" : {
+      "tableName" : "course_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/course_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=kFd57ldaQG7%2FtfbM5NYk8Cow85c%3D&response-content-disposition=inline%3B%20filename%3D%22course_dim-00000-8e1bff31.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "course_dim-00000-8e1bff31.gz"
+      } ]
+    },
+    "course_section_dim" : {
+      "tableName" : "course_section_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/course_section_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=8doawbI6HNRUmcvrnIv03d%2BIGNI%3D&response-content-disposition=inline%3B%20filename%3D%22course_section_dim-00000-ae3b17fa.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "course_section_dim-00000-ae3b17fa.gz"
+      } ]
+    },
+    "course_ui_canvas_navigation_dim" : {
+      "tableName" : "course_ui_canvas_navigation_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/course_ui_canvas_navigation_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=3IMfinJm00KABsEdhdoEhVLwGNw%3D&response-content-disposition=inline%3B%20filename%3D%22course_ui_canvas_navigation_dim-00000-c249f768.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "course_ui_canvas_navigation_dim-00000-c249f768.gz"
+      } ]
+    },
+    "course_ui_navigation_item_dim" : {
+      "tableName" : "course_ui_navigation_item_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/course_ui_navigation_item_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=Z%2BRxrCNmVWcXvDjNdema%2FZwyQKk%3D&response-content-disposition=inline%3B%20filename%3D%22course_ui_navigation_item_dim-00000-01816e03.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "course_ui_navigation_item_dim-00000-01816e03.gz"
+      } ]
+    },
+    "course_ui_navigation_item_fact" : {
+      "tableName" : "course_ui_navigation_item_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/course_ui_navigation_item_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=28ZFHsSDzcu3MHmNrzCuey60fSY%3D&response-content-disposition=inline%3B%20filename%3D%22course_ui_navigation_item_fact-00000-31b7c860.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "course_ui_navigation_item_fact-00000-31b7c860.gz"
+      } ]
+    },
+    "discussion_entry_dim" : {
+      "tableName" : "discussion_entry_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/discussion_entry_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=oY6%2F77cjoxtw1ac%2FI%2B8kdkj2r%2B4%3D&response-content-disposition=inline%3B%20filename%3D%22discussion_entry_dim-00000-0741f23a.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "discussion_entry_dim-00000-0741f23a.gz"
+      } ]
+    },
+    "discussion_entry_fact" : {
+      "tableName" : "discussion_entry_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/discussion_entry_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=hTo9wrw%2BxoFIkyPOmYXo8Im060I%3D&response-content-disposition=inline%3B%20filename%3D%22discussion_entry_fact-00000-c4c6e854.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "discussion_entry_fact-00000-c4c6e854.gz"
+      } ]
+    },
+    "discussion_topic_dim" : {
+      "tableName" : "discussion_topic_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/discussion_topic_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=CETYaJO3M1uX8oNJEdLbN6QDDGw%3D&response-content-disposition=inline%3B%20filename%3D%22discussion_topic_dim-00000-d5567fa8.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "discussion_topic_dim-00000-d5567fa8.gz"
+      } ]
+    },
+    "discussion_topic_fact" : {
+      "tableName" : "discussion_topic_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/discussion_topic_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=li7voEyBEgis6vdp8lH6S8UdXp0%3D&response-content-disposition=inline%3B%20filename%3D%22discussion_topic_fact-00000-1c8006ef.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "discussion_topic_fact-00000-1c8006ef.gz"
+      } ]
+    },
+    "enrollment_dim" : {
+      "tableName" : "enrollment_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/enrollment_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=mcslJRLVkamsNXD7stJzJaWCtiQ%3D&response-content-disposition=inline%3B%20filename%3D%22enrollment_dim-00000-f83d44d7.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "enrollment_dim-00000-f83d44d7.gz"
+      } ]
+    },
+    "enrollment_fact" : {
+      "tableName" : "enrollment_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/enrollment_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=3rXoQ4AQMLmzdcfxmyJvNjiExIw%3D&response-content-disposition=inline%3B%20filename%3D%22enrollment_fact-00000-f6e45514.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "enrollment_fact-00000-f6e45514.gz"
+      } ]
+    },
+    "enrollment_rollup_dim" : {
+      "tableName" : "enrollment_rollup_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/enrollment_rollup_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=fqHTVafyZynVPmgwTD37oEV3hu0%3D&response-content-disposition=inline%3B%20filename%3D%22enrollment_rollup_dim-00000-b0057cb0.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "enrollment_rollup_dim-00000-b0057cb0.gz"
+      } ]
+    },
+    "enrollment_term_dim" : {
+      "tableName" : "enrollment_term_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/enrollment_term_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=73MlurlpG7OZ6R5Qrg8dKqDDLq4%3D&response-content-disposition=inline%3B%20filename%3D%22enrollment_term_dim-00000-dd45bf9f.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "enrollment_term_dim-00000-dd45bf9f.gz"
+      } ]
+    },
+    "external_tool_activation_dim" : {
+      "tableName" : "external_tool_activation_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/external_tool_activation_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=dcSdJkts%2FRKVoQkI%2Bp9voa5U0q4%3D&response-content-disposition=inline%3B%20filename%3D%22external_tool_activation_dim-00000-2bf57791.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "external_tool_activation_dim-00000-2bf57791.gz"
+      } ]
+    },
+    "external_tool_activation_fact" : {
+      "tableName" : "external_tool_activation_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/external_tool_activation_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=cyhllBYKKHHddnA7vfvDYug5VJw%3D&response-content-disposition=inline%3B%20filename%3D%22external_tool_activation_fact-00000-453c1d5b.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "external_tool_activation_fact-00000-453c1d5b.gz"
+      } ]
+    },
+    "file_dim" : {
+      "tableName" : "file_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/file_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=C%2Bl3ow0d%2B5bW4P%2Fdc%2F%2F4iNAis5s%3D&response-content-disposition=inline%3B%20filename%3D%22file_dim-00000-55ee42b9.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "file_dim-00000-55ee42b9.gz"
+      } ]
+    },
+    "file_fact" : {
+      "tableName" : "file_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/file_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=TC%2FAFs6mPAiGE18ePv4cD540Vuo%3D&response-content-disposition=inline%3B%20filename%3D%22file_fact-00000-f4964225.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "file_fact-00000-f4964225.gz"
+      } ]
+    },
+    "pseudonym_dim" : {
+      "tableName" : "pseudonym_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/pseudonym_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=5UfddS%2BzzKMM0DMbp6pnqk5TMiE%3D&response-content-disposition=inline%3B%20filename%3D%22pseudonym_dim-00000-09d3affb.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "pseudonym_dim-00000-09d3affb.gz"
+      } ]
+    },
+    "pseudonym_fact" : {
+      "tableName" : "pseudonym_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/pseudonym_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=ghaPG%2Bs3rpzrx0kS67h%2B9X%2Fmfi8%3D&response-content-disposition=inline%3B%20filename%3D%22pseudonym_fact-00000-807df9df.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "pseudonym_fact-00000-807df9df.gz"
+      } ]
+    },
+    "quiz_dim" : {
+      "tableName" : "quiz_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/quiz_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=DjGD67G9FkWHXQqSOgHOB2eOkQI%3D&response-content-disposition=inline%3B%20filename%3D%22quiz_dim-00000-9ca9cb76.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "quiz_dim-00000-9ca9cb76.gz"
+      } ]
+    },
+    "quiz_fact" : {
+      "tableName" : "quiz_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/quiz_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=wKCgkfTyO89wmk5%2B2Vg0pogYs%2BQ%3D&response-content-disposition=inline%3B%20filename%3D%22quiz_fact-00000-8650a491.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "quiz_fact-00000-8650a491.gz"
+      } ]
+    },
+    "quiz_question_answer_dim" : {
+      "tableName" : "quiz_question_answer_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/quiz_question_answer_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=y5egyRc3bu0lAjKU%2FbUTmqxoeOw%3D&response-content-disposition=inline%3B%20filename%3D%22quiz_question_answer_dim-00000-4b577d14.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "quiz_question_answer_dim-00000-4b577d14.gz"
+      } ]
+    },
+    "quiz_question_answer_fact" : {
+      "tableName" : "quiz_question_answer_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/quiz_question_answer_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=BjCPEzZuig2hlvo1CETSReBwiMo%3D&response-content-disposition=inline%3B%20filename%3D%22quiz_question_answer_fact-00000-c09b8904.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "quiz_question_answer_fact-00000-c09b8904.gz"
+      } ]
+    },
+    "quiz_question_dim" : {
+      "tableName" : "quiz_question_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/quiz_question_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=ObeOe1qjpsyeQm9T%2FTpnIp2cNRY%3D&response-content-disposition=inline%3B%20filename%3D%22quiz_question_dim-00000-c40e84f3.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "quiz_question_dim-00000-c40e84f3.gz"
+      } ]
+    },
+    "quiz_question_fact" : {
+      "tableName" : "quiz_question_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/quiz_question_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=YZn4mzfbB0CcSUcQft%2FjdtSvbUo%3D&response-content-disposition=inline%3B%20filename%3D%22quiz_question_fact-00000-0d80185a.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "quiz_question_fact-00000-0d80185a.gz"
+      } ]
+    },
+    "quiz_submission_dim" : {
+      "tableName" : "quiz_submission_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/quiz_submission_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=B%2FYMTLXg8XJPAzB3dblEcL%2BB6vg%3D&response-content-disposition=inline%3B%20filename%3D%22quiz_submission_dim-00000-b21c77e6.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "quiz_submission_dim-00000-b21c77e6.gz"
+      } ]
+    },
+    "quiz_submission_fact" : {
+      "tableName" : "quiz_submission_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/quiz_submission_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=z2CmA%2FKth0k8ms22gkM8kXK30lk%3D&response-content-disposition=inline%3B%20filename%3D%22quiz_submission_fact-00000-2a3c9a8b.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "quiz_submission_fact-00000-2a3c9a8b.gz"
+      } ]
+    },
+    "quiz_submission_historical_dim" : {
+      "tableName" : "quiz_submission_historical_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/quiz_submission_historical_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=ZHAz3Q0u2ULJexWsgGgNQityIGM%3D&response-content-disposition=inline%3B%20filename%3D%22quiz_submission_historical_dim-00000-5e324b78.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "quiz_submission_historical_dim-00000-5e324b78.gz"
+      } ]
+    },
+    "quiz_submission_historical_fact" : {
+      "tableName" : "quiz_submission_historical_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/quiz_submission_historical_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=zP2qmkrVz6l31m15TQ4p%2FO5%2FcNE%3D&response-content-disposition=inline%3B%20filename%3D%22quiz_submission_historical_fact-00000-02d48483.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "quiz_submission_historical_fact-00000-02d48483.gz"
+      } ]
+    },
+    "requests" : {
+      "tableName" : "requests",
+      "partial" : true,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/requests/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=0SNDWCCixdAGiaFuOqbtrN%2FA9mg%3D&response-content-disposition=inline%3B%20filename%3D%22requests-00000-16b40938.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "requests-00000-16b40938.gz"
+      } ]
+    },
+    "role_dim" : {
+      "tableName" : "role_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/role_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=xJBX8kTMghade9ea3hv2ftC9UFc%3D&response-content-disposition=inline%3B%20filename%3D%22role_dim-00000-6481db4a.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "role_dim-00000-6481db4a.gz"
+      } ]
+    },
+    "submission_comment_dim" : {
+      "tableName" : "submission_comment_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/submission_comment_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=TMxU2R5Fdnqml1a06vLeHYgbS8o%3D&response-content-disposition=inline%3B%20filename%3D%22submission_comment_dim-00000-20a53230.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "submission_comment_dim-00000-20a53230.gz"
+      } ]
+    },
+    "submission_comment_fact" : {
+      "tableName" : "submission_comment_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/submission_comment_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=wnTa8KLBov71AZCmeZzdFTHMbdc%3D&response-content-disposition=inline%3B%20filename%3D%22submission_comment_fact-00000-e196c5b6.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "submission_comment_fact-00000-e196c5b6.gz"
+      } ]
+    },
+    "submission_comment_participant_dim" : {
+      "tableName" : "submission_comment_participant_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/submission_comment_participant_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=0a5J06PP8WXv7aAAYDmZca1smbk%3D&response-content-disposition=inline%3B%20filename%3D%22submission_comment_participant_dim-00000-36ee4020.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "submission_comment_participant_dim-00000-36ee4020.gz"
+      } ]
+    },
+    "submission_comment_participant_fact" : {
+      "tableName" : "submission_comment_participant_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/submission_comment_participant_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=1AhPj1XqoBDG3se5JKeSFUJ%2BN4Q%3D&response-content-disposition=inline%3B%20filename%3D%22submission_comment_participant_fact-00000-f094c626.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "submission_comment_participant_fact-00000-f094c626.gz"
+      } ]
+    },
+    "submission_dim" : {
+      "tableName" : "submission_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/submission_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=4qV35jE0oS9sM%2F3Pja5itTo3Cq0%3D&response-content-disposition=inline%3B%20filename%3D%22submission_dim-00000-1fd8ce57.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "submission_dim-00000-1fd8ce57.gz"
+      } ]
+    },
+    "submission_fact" : {
+      "tableName" : "submission_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/submission_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=%2BUAEOBLcUu0y0iWBTqsqXfrzRpI%3D&response-content-disposition=inline%3B%20filename%3D%22submission_fact-00000-617661f3.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "submission_fact-00000-617661f3.gz"
+      } ]
+    },
+    "user_dim" : {
+      "tableName" : "user_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/user_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=rfxb659AQXE%2FabwDtDEXVFRj%2Bbw%3D&response-content-disposition=inline%3B%20filename%3D%22user_dim-00000-8dd0ecca.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "user_dim-00000-8dd0ecca.gz"
+      } ]
+    },
+    "wiki_dim" : {
+      "tableName" : "wiki_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/wiki_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=%2Fxj%2FiEKmZxxC031tU4N%2BbjAj2S0%3D&response-content-disposition=inline%3B%20filename%3D%22wiki_dim-00000-72a605a8.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "wiki_dim-00000-72a605a8.gz"
+      } ]
+    },
+    "wiki_fact" : {
+      "tableName" : "wiki_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/wiki_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=wMtphAMThAIJrMr5AtT5lCnDvv4%3D&response-content-disposition=inline%3B%20filename%3D%22wiki_fact-00000-5613b914.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "wiki_fact-00000-5613b914.gz"
+      } ]
+    },
+    "wiki_page_dim" : {
+      "tableName" : "wiki_page_dim",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/wiki_page_dim/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=bVxa8qrffgQpJmXFs4IOD8XHqpQ%3D&response-content-disposition=inline%3B%20filename%3D%22wiki_page_dim-00000-284ea513.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "wiki_page_dim-00000-284ea513.gz"
+      } ]
+    },
+    "wiki_page_fact" : {
+      "tableName" : "wiki_page_fact",
+      "partial" : false,
+      "files" : [ {
+        "url" : "https://hosted-data-work.s3.amazonaws.com/20170121T210001.667/dw_split/97140000000000001/wiki_page_fact/part-00000.gz?AWSAccessKeyId=ASIAIRNDBJ4E6BGXD5GA&Expires=1486485130&Signature=m0PjoF04p6dBeF9zE9Px60t%2BbiY%3D&response-content-disposition=inline%3B%20filename%3D%22wiki_page_fact-00000-4cfef40e.gz%22%3B&x-amz-security-token=FQoDYXdzEEMaDA1sRWwbIFIxI23pEyKcA6%2FSMI0QcIi3kUFu7nOQiUooIsiIVJRIIhxo7y7EmeoGcAH2IgV0KqHNROi3XUtZxqhgJ6dlKUp%2F%2F2BceX2gMZTacuWJiS6l9n%2FoBjOZFcySvZmGw9vQINrMCerbA7j2wtN5ojV3%2BYaMqR8LeoYSn4XAzw9VTKMe6BAWdQ1FkT23FB%2B5n6uAQ0KThuxia1dtPSE1aGmNcVqACjb4kbY%2BBsMkY6UwJXjSK4j2EWk5aagJmBsLxnGAC0DD0%2F5U8GIY4MUGn%2FmdUrzzfAL3f1s9Mb%2BAVvUGtj392EwsCKMb2op6ZSGDr6NAXPvk7r2APteDxu2qiKgWOfR0BaCx96UExKWnhzIIIR11HKIW4xACSMo6dfRDtrnIzHoSN2LDRqQQyef4%2F6GcEY%2Bc%2FlO3889C1nAlJAtx3glUSZurBWaUAFQFgta4myhnzE%2FbB3zqaLfigcX4Xj4pY2vUfAe2Du8Hl5BlLxAXeg6gga3wbcFyMAC9JVI9thQLSjk4HYllnvMHEP1fncUsWxWtqB7rxknny0%2FN4ver1J5as5KynpAoiaXmxAU%3D",
+        "filename" : "wiki_page_fact-00000-4cfef40e.gz"
+      } ]
+    }
+  }
+}

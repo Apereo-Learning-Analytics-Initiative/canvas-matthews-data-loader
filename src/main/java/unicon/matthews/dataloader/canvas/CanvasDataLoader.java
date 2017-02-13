@@ -15,24 +15,25 @@ import org.springframework.stereotype.Component;
 import unicon.matthews.caliper.Event;
 import unicon.matthews.dataloader.DataLoader;
 import unicon.matthews.dataloader.MatthewsClient;
+import unicon.matthews.dataloader.canvas.CanvasDataApiClient.Options;
 import unicon.matthews.dataloader.canvas.io.converter.CanvasConversionService;
 import unicon.matthews.dataloader.canvas.io.converter.SupportingEntities;
 import unicon.matthews.dataloader.canvas.io.deserialize.CanvasDataDumpReader;
-import unicon.matthews.dataloader.canvas.io.deserialize.ClassReader;
-import unicon.matthews.dataloader.canvas.io.deserialize.EnrollmentReader;
-import unicon.matthews.dataloader.canvas.io.deserialize.LineItemReader;
-import unicon.matthews.dataloader.canvas.io.deserialize.UserReader;
+import unicon.matthews.dataloader.canvas.model.CanvasAssignmentDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasCourseSectionDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasDataDump;
 import unicon.matthews.dataloader.canvas.model.CanvasDataPseudonymDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentTermDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
+import unicon.matthews.dataloader.canvas.model.CanvasQuizDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionFact;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionHistoricalDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasUserDimension;
 import unicon.matthews.oneroster.Enrollment;
 import unicon.matthews.oneroster.LineItem;
 import unicon.matthews.oneroster.User;
-
-import static unicon.matthews.dataloader.canvas.CanvasDataApiClient.Options;
 
 @Component
 public class CanvasDataLoader implements DataLoader {
@@ -47,7 +48,7 @@ public class CanvasDataLoader implements DataLoader {
 
   @Autowired
   CanvasConversionService canvasConversionService;
-
+  
   // Sensor ID which indicates origin from this loader and the data origin (Dump vs potential of pulling via Redshift)
   private static final String SENSOR_ID_DUMP_READER = "canvas-matthews-data-loader/dump-reader";
 
@@ -74,14 +75,19 @@ public class CanvasDataLoader implements DataLoader {
 //      CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-22"),Options.NONE);
 
       // Dump passed to the processors below needs to have been downloaded, or they will fail.
+      
+      Collection<CanvasEnrollmentTermDimension> enrollmentTerms
+        = CanvasDataDumpReader.forType(CanvasEnrollmentTermDimension.class).read(dump);
+      
+      SupportingEntities supportingEntities = SupportingEntities.builder()
+          .enrollmentTerms(enrollmentTerms)
+          .build();
 
+      Collection<CanvasCourseSectionDimension> courseSections
+        = CanvasDataDumpReader.forType(CanvasCourseSectionDimension.class).read(dump);
       Map<String, unicon.matthews.oneroster.Class> classMap = new HashMap<>();
-      Map<String, User> userMap = new HashMap<>();
-      Map<String, Enrollment> enrollmentMap = new HashMap<>();
-      Map<String, LineItem> lineItemMap = new HashMap<>();
 
-      ClassReader courseSectionReader = new ClassReader(dump.getDownloadPath().toString());
-      Collection<unicon.matthews.oneroster.Class> classes = courseSectionReader.read();
+      List<unicon.matthews.oneroster.Class> classes = canvasConversionService.convertCanvasCourseSections(courseSections, supportingEntities);
       if (classes != null) {
         for (unicon.matthews.oneroster.Class klass : classes) {
           matthewsClient.postClass(klass);
@@ -89,8 +95,11 @@ public class CanvasDataLoader implements DataLoader {
         }
       }
       
-      UserReader userReader = new UserReader(dump.getDownloadPath().toString());
-      Collection<User> users = userReader.read();
+      Collection<CanvasUserDimension> canvasUsers 
+        = CanvasDataDumpReader.forType(CanvasUserDimension.class).read(dump);
+      Map<String, User> userMap = new HashMap<>();
+      
+      List<User> users = canvasConversionService.convertCanvasUsers(canvasUsers, supportingEntities);
       if (users != null) {
         for (User user : users) {
           matthewsClient.postUser(user);
@@ -98,19 +107,42 @@ public class CanvasDataLoader implements DataLoader {
         }
       }
       
-      EnrollmentReader enrollmentReader = new EnrollmentReader(dump.getDownloadPath().toString(),classMap,userMap);
-      Collection<Enrollment> enrollments = enrollmentReader.read();
+      supportingEntities = SupportingEntities.builder()
+          .classes(classMap)
+          .users(userMap)
+          .enrollmentTerms(enrollmentTerms)
+          .build();
+      
+      Collection<CanvasEnrollmentDimension> canvasEnrollments
+        = CanvasDataDumpReader.forType(CanvasEnrollmentDimension.class).read(dump);
+      Map<String, Enrollment> enrollmentMap = new HashMap<>();
+
+      List<Enrollment> enrollments = canvasConversionService.convertCanvasEnrollments(canvasEnrollments, supportingEntities);
       if (enrollments != null) {
         for (Enrollment enrollment : enrollments) {
           matthewsClient.postEnrollment(enrollment);
           enrollmentMap.put(enrollment.getSourcedId(), enrollment);
         }
       }
-      
-      LineItemReader lineItemReader = new LineItemReader(dump.getDownloadPath().toString(), classMap);
-      Collection<LineItem> lineItems = lineItemReader.read();
-      if (lineItems != null) {
-        for (LineItem lineItem : lineItems) {
+
+      Map<String, LineItem> lineItemMap = new HashMap<>();
+      Collection<CanvasAssignmentDimension> canvasAssignments
+        = CanvasDataDumpReader.forType(CanvasAssignmentDimension.class).read(dump);
+
+      List<LineItem> assignmentLineItems = canvasConversionService.convertCanvasAssignments(canvasAssignments, supportingEntities);
+      if (assignmentLineItems != null) {
+        for (LineItem lineItem : assignmentLineItems) {
+          matthewsClient.postLineItem(lineItem);
+          lineItemMap.put(lineItem.getSourcedId(), lineItem);
+        }
+      }
+
+      Collection<CanvasQuizDimension> canvasQuizzes
+        = CanvasDataDumpReader.forType(CanvasQuizDimension.class).read(dump);
+
+      List<LineItem> quizLineItems = canvasConversionService.convertCanvasQuizes(canvasQuizzes, supportingEntities);
+      if (quizLineItems != null) {
+        for (LineItem lineItem : quizLineItems) {
           matthewsClient.postLineItem(lineItem);
           lineItemMap.put(lineItem.getSourcedId(), lineItem);
         }
@@ -121,14 +153,16 @@ public class CanvasDataLoader implements DataLoader {
 
       Collection<CanvasPageRequest> pageRequests = CanvasDataDumpReader.forType(CanvasPageRequest.class).read(dump);
 
-      SupportingEntities supportingEntities = SupportingEntities.builder()
+      supportingEntities = SupportingEntities.builder()
               .classes(classMap)
               .users(userMap)
               .pseudonymDimensions(pseudonymDimensions)
               .enrollments(enrollmentMap)
               .lineItems(lineItemMap)
               .pageRequests(pageRequests)
+              .enrollmentTerms(enrollmentTerms)
               .build();
+
 
       // Example of filtering results to only include a specific artifact (when multiple available) and also to filter
       // those which have end dates and are after a specified date.

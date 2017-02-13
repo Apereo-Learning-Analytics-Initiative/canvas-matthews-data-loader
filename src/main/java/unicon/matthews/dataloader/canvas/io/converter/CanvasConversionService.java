@@ -4,8 +4,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import unicon.matthews.caliper.Event;
+import unicon.matthews.dataloader.canvas.model.CanvasAssignmentDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasCourseSectionDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
+import unicon.matthews.dataloader.canvas.model.CanvasQuizDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasUserDimension;
+import unicon.matthews.oneroster.Enrollment;
+import unicon.matthews.oneroster.LineItem;
+import unicon.matthews.oneroster.User;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,7 +28,22 @@ public class CanvasConversionService {
 
     @Autowired
     private List<Converter<CanvasPageRequest, Optional<Event>> >pageRequestToEventConverters;
+    
+    @Autowired
+    private CanvasClassConverter canvasClassConverter;
+    
+    @Autowired
+    private CanvasUserConverter canvasUserConverter;
 
+    @Autowired
+    private CanvasEnrollmentConverter canvasEnrollmentConverter;
+    
+    @Autowired
+    private CanvasAssignmentConverter canvasAssignmentConverter;
+    
+    @Autowired
+    private CanvasQuizConverter canvasQuizConverter;
+    
     public List<Event> convertPageRequests(Collection<CanvasPageRequest> sourceItems,
             SupportingEntities supportingEntities) {
 
@@ -53,6 +77,97 @@ public class CanvasConversionService {
         return events;
     }
 
+    public List<unicon.matthews.oneroster.Class> convertCanvasCourseSections(Collection<CanvasCourseSectionDimension> sourceItems,
+            SupportingEntities supportingEntities) {
+      List<unicon.matthews.oneroster.Class> classes = new ArrayList<>();
+      
+      Optional<unicon.matthews.oneroster.Class> klass = null;
+      
+      for (CanvasCourseSectionDimension sourceItem : sourceItems) {
+        klass = canvasClassConverter.convert(sourceItem, supportingEntities);
+        
+        if (klass.isPresent()) {
+          classes.add(klass.get());
+          logger.debug("Course section PROCESSED from {} to {}", sourceItem.toString(), klass.get().toString());
+        }
+      }
+      
+      return classes;
+    }
+    
+    public List<User> convertCanvasUsers(Collection<CanvasUserDimension> sourceItems, 
+        SupportingEntities supportingEntities) {
+      List<User> users = new ArrayList<>();
+      
+      Optional<User> user = null;
+      
+      for (CanvasUserDimension sourceItem : sourceItems) {
+        user = canvasUserConverter.convert(sourceItem, supportingEntities);
+        
+        if (user.isPresent()) {
+          users.add(user.get());
+          logger.debug("User PROCESSED from {} to {}", sourceItem.toString(), user.get().toString());
+        }
+      }
+      
+      return users;
+    }
+    
+    public List<Enrollment> convertCanvasEnrollments(Collection<CanvasEnrollmentDimension> sourceItems, 
+        SupportingEntities supportingEntities) {
+      List<Enrollment> enrollments = new ArrayList<>();
+      
+      Optional<Enrollment> enrollment = null;
+      
+      for (CanvasEnrollmentDimension sourceItem : sourceItems) {
+        enrollment = canvasEnrollmentConverter.convert(sourceItem, supportingEntities);
+        
+        if (enrollment.isPresent()) {
+          enrollments.add(enrollment.get());
+          logger.debug("Enrollment PROCESSED from {} to {}", sourceItem.toString(), enrollment.get().toString());
 
+        }
+      }
+      
+      return enrollments;
+    }
+    
+    public List<LineItem> convertCanvasAssignments(Collection<CanvasAssignmentDimension> sourceItems,
+        SupportingEntities supportingEntities) {
+      List<LineItem> lineItems = new ArrayList<>();
+      
+      Optional<LineItem> lineItem = null;
+      
+      for (CanvasAssignmentDimension sourceItem : sourceItems) {
+        lineItem = canvasAssignmentConverter.convert(sourceItem, supportingEntities);
+        
+        if (lineItem.isPresent()) {
+          lineItems.add(lineItem.get());
+          logger.debug("Line item PROCESSED from {} to {}", sourceItem.toString(), lineItem.get().toString());
+
+        }
+      }
+      
+      return lineItems;
+    }
+
+    public List<LineItem> convertCanvasQuizes(Collection<CanvasQuizDimension> sourceItems,
+        SupportingEntities supportingEntities) {
+      List<LineItem> lineItems = new ArrayList<>();
+      
+      Optional<LineItem> lineItem = null;
+      
+      for (CanvasQuizDimension sourceItem : sourceItems) {
+        lineItem = canvasQuizConverter.convert(sourceItem, supportingEntities);
+        
+        if (lineItem.isPresent()) {
+          lineItems.add(lineItem.get());
+          logger.debug("Line item PROCESSED from {} to {}", sourceItem.toString(), lineItem.get().toString());
+
+        }
+      }
+      
+      return lineItems;
+    }
 
 }

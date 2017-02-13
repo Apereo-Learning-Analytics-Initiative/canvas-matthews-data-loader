@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Singular;
 import unicon.matthews.dataloader.canvas.model.CanvasDataPseudonymDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentTermDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
 import unicon.matthews.oneroster.Class;
 import unicon.matthews.oneroster.Enrollment;
@@ -17,6 +18,7 @@ import java.util.Map;
 @Builder
 public class SupportingEntities {
 
+    Collection<CanvasEnrollmentTermDimension> enrollmentTerms;
     Map<String, Class> classes;
     Map<String, User> users;
     Collection<CanvasDataPseudonymDimension> pseudonymDimensions;
