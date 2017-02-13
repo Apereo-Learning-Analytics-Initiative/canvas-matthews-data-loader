@@ -19,6 +19,8 @@ import org.springframework.web.client.RestTemplate;
 
 import unicon.matthews.caliper.Envelope;
 import unicon.matthews.caliper.Event;
+import unicon.matthews.entity.ClassMapping;
+import unicon.matthews.entity.UserMapping;
 import unicon.matthews.oneroster.Enrollment;
 import unicon.matthews.oneroster.LineItem;
 import unicon.matthews.oneroster.User;
@@ -133,6 +135,17 @@ public class MatthewsClient {
         .exchange(url, HttpMethod.POST, he, JsonObject.class);
   }
   
+  public void postUserMapping(UserMapping userMapping) {
+    HttpEntity<UserMapping> he = new HttpEntity<UserMapping>(userMapping, this.httpHeaders);
+    
+    String path = "/api/users/mapping";
+    String url = this.baseUrl + path;
+
+    restTemplate
+        .exchange(url, HttpMethod.POST, he, JsonObject.class);
+
+  }
+  
   public void postLineItem(LineItem lineItem) {
     HttpEntity<LineItem> he = new HttpEntity<LineItem>(lineItem, this.httpHeaders);
     
@@ -152,6 +165,17 @@ public class MatthewsClient {
 
     restTemplate
         .exchange(url, HttpMethod.POST, he, JsonObject.class);
+  }
+  
+  public void postClassMapping(ClassMapping classMapping) {
+    HttpEntity<ClassMapping> he = new HttpEntity<ClassMapping>(classMapping, this.httpHeaders);
+    
+    String path = "/api/classes/mapping";
+    String url = this.baseUrl + path;
+
+    restTemplate
+        .exchange(url, HttpMethod.POST, he, JsonObject.class);
+
   }
 
   public void postEvent(Event event, String sensorName) {

@@ -1,5 +1,7 @@
 package unicon.matthews.dataloader.canvas.io.converter;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -27,12 +29,21 @@ public class CanvasUserConverter implements Converter<CanvasUserDimension, Optio
       firstName = StringUtils.substringAfter(sortableName, ", ");
     }
     
+    Map<String, String> metadata = new HashMap<>();
+    
+    String userId = source.getCanvasId().isPresent() ? String.valueOf(source.getCanvasId().get()) : null;
+    
+    if (StringUtils.isNotBlank(userId)) {
+      metadata.put("CANVAS_USER_ID", userId);
+    }
+    
     User user 
       = new User.Builder()
         .withSourcedId(String.valueOf(source.getId()))
         .withUserId(String.valueOf(source.getCanvasId().get()))
         .withFamilyName(lastName)
         .withGivenName(firstName)
+        .withMetadata(metadata)
         .build();
     
     return Optional.of(user);

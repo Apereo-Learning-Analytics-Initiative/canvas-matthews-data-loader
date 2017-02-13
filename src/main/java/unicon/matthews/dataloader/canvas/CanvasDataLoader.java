@@ -1,6 +1,7 @@
 package unicon.matthews.dataloader.canvas;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Collection;
 import java.util.HashMap;
@@ -31,6 +32,9 @@ import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionFact;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionHistoricalDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasUserDimension;
+import unicon.matthews.entity.ClassMapping;
+import unicon.matthews.entity.UserMapping;
+import unicon.matthews.oneroster.Class;
 import unicon.matthews.oneroster.Enrollment;
 import unicon.matthews.oneroster.LineItem;
 import unicon.matthews.oneroster.User;
@@ -95,6 +99,22 @@ public class CanvasDataLoader implements DataLoader {
         }
       }
       
+      // class mapping
+      for (String key : classMap.keySet()) {
+        
+        Class klass = classMap.get(key);
+        String classExternalId = klass.getMetadata().get("CANVAS_COURSE_SECTION_ID");
+        
+        ClassMapping classMapping
+          = new ClassMapping.Builder()
+            .withDateLastModified(LocalDateTime.now())
+            .withClassExternalId(classExternalId)
+            .withClassSourcedId(String.valueOf(klass.getSourcedId()))
+            .build();
+        
+        matthewsClient.postClassMapping(classMapping);
+      }
+      
       Collection<CanvasUserDimension> canvasUsers 
         = CanvasDataDumpReader.forType(CanvasUserDimension.class).read(dump);
       Map<String, User> userMap = new HashMap<>();
@@ -106,6 +126,23 @@ public class CanvasDataLoader implements DataLoader {
           userMap.put(user.getSourcedId(), user);
         }
       }
+      
+      // user mapping
+      for (String key : userMap.keySet()) {
+        
+        User user = userMap.get(key);
+        String userExternalId = user.getMetadata().get("CANVAS_USER_ID");
+        
+        UserMapping userMapping
+          = new UserMapping.Builder()
+            .withDateLastModified(LocalDateTime.now())
+            .withUserExternalId(userExternalId)
+            .withUserSourcedId(String.valueOf(user.getSourcedId()))
+            .build();
+        
+        matthewsClient.postUserMapping(userMapping);
+      }
+
       
       supportingEntities = SupportingEntities.builder()
           .classes(classMap)
@@ -162,7 +199,6 @@ public class CanvasDataLoader implements DataLoader {
               .pageRequests(pageRequests)
               .enrollmentTerms(enrollmentTerms)
               .build();
-
 
       // Example of filtering results to only include a specific artifact (when multiple available) and also to filter
       // those which have end dates and are after a specified date.
