@@ -17,4 +17,5 @@ hs_err_pid*
 /bin/
 /target/
 /CANVAS_DUMP/
+/CANVAS_DUMPS/
 /local.txt
