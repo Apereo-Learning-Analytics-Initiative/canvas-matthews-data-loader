@@ -37,12 +37,19 @@ public class CanvasUserConverter implements Converter<CanvasUserDimension, Optio
       metadata.put("CANVAS_USER_ID", userId);
     }
     
+    String email = null;
+    Map<String, String> userEmailMap = supportingEntities.getUserEmailMap();
+    if (userEmailMap != null) {
+      email = userEmailMap.get(String.valueOf(source.getId()));
+    }
+    
     User user 
       = new User.Builder()
         .withSourcedId(String.valueOf(source.getId()))
         .withUserId(String.valueOf(source.getCanvasId().get()))
         .withFamilyName(lastName)
         .withGivenName(firstName)
+        .withEmail(email)
         .withMetadata(metadata)
         .build();
     

@@ -26,12 +26,6 @@ public class CanvasEnrollmentConverter implements Converter<CanvasEnrollmentDime
     Map<String, Class> classes = supportingEntities.getClasses();
     Map<String, User> users = supportingEntities.getUsers();
     
-    
-    System.out.println("***************************");
-    System.out.println(classes);
-    System.out.println(users);
-    System.out.println("***************************");
-    
     Role role = null;
     String roleType = source.getType();
     if ("StudentEnrollment".equalsIgnoreCase(roleType) 

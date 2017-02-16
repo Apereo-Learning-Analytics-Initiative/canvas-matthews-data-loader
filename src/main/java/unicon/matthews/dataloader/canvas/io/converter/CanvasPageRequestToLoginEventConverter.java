@@ -44,42 +44,49 @@ public class CanvasPageRequestToLoginEventConverter implements Converter<CanvasP
             result = Optional.empty();
         } else {
 
-            User user = supportingEntities.getUsers().values().stream().filter(u -> u.getSourcedId().equalsIgnoreCase(
-                    userId.get())).findFirst().get();
-
-            CanvasDataPseudonymDimension pseudonym = supportingEntities.getPseudonymDimensions().stream().filter(
-                    p -> p.getUserId().toString().equalsIgnoreCase(userId.get())
-            ).findFirst().get();
-
-
-            String userLogin = pseudonym.getUniqueName();
-            String rootAccountId = request.getRootAccountId().toString();
-
-            LocalDateTime eventTime = LocalDateTime.ofInstant(request.getTimestamp(), ZoneId.of("UTC"));
-
-            Event event;
-            Enrollment enrollment = null;
-            if (request.getCourseId().isPresent()) {
-                String courseId = request.getCourseId().get().toString();
-                enrollment = supportingEntities.getEnrollments().values().stream().filter(
-                        e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)).findFirst().get();
-
-                event = EventBuilderUtils.usingLoginEventType()
-                        .withEventTime(eventTime)
-                        .withAgent(usingPersonType(user, userId.get(), userLogin, rootAccountId).build())
-                        .withGroup(usingCourseSectionGroup(enrollment).build())
-                        .withMembership(usingMembership(enrollment).build())
-                        .withFederatedSession(request.getSessionId())
-                        .build();
-            } else { // Omit the optional group and membership info if we have no enrollment info
-                event = EventBuilderUtils.usingLoginEventType()
-                        .withEventTime(eventTime)
-                        .withAgent(usingPersonType(user, userId.get(), userLogin, rootAccountId).build())
-                        .withFederatedSession(request.getSessionId())
-                        .build();
+            Optional<User> maybeUser = supportingEntities.getUsers().values().stream().filter(u -> u.getSourcedId().equalsIgnoreCase(
+                userId.get())).findFirst();
+            
+            if (maybeUser != null & maybeUser.isPresent()) {
+              User user = maybeUser.get();
+              
+              CanvasDataPseudonymDimension pseudonym = supportingEntities.getPseudonymDimensions().stream().filter(
+                      p -> p.getUserId().toString().equalsIgnoreCase(userId.get())
+              ).findFirst().get();
+    
+    
+              String userLogin = pseudonym.getUniqueName();
+              String rootAccountId = request.getRootAccountId().toString();
+    
+              LocalDateTime eventTime = LocalDateTime.ofInstant(request.getTimestamp(), ZoneId.of("UTC"));
+    
+              Event event;
+              Enrollment enrollment = null;
+              if (request.getCourseId().isPresent()) {
+                  String courseId = request.getCourseId().get().toString();
+                  enrollment = supportingEntities.getEnrollments().values().stream().filter(
+                          e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)).findFirst().get();
+    
+                  event = EventBuilderUtils.usingLoginEventType()
+                          .withEventTime(eventTime)
+                          .withAgent(usingPersonType(user, userId.get(), userLogin, rootAccountId).build())
+                          .withGroup(usingCourseSectionGroup(enrollment).build())
+                          .withMembership(usingMembership(enrollment).build())
+                          .withFederatedSession(request.getSessionId())
+                          .build();
+              } else { // Omit the optional group and membership info if we have no enrollment info
+                  event = EventBuilderUtils.usingLoginEventType()
+                          .withEventTime(eventTime)
+                          .withAgent(usingPersonType(user, userId.get(), userLogin, rootAccountId).build())
+                          .withFederatedSession(request.getSessionId())
+                          .build();
+              }
+    
+              result = Optional.of(event);
+            }      
+            else {
+              result = Optional.empty();
             }
-
-            result = Optional.of(event);
         }
 
         return result;

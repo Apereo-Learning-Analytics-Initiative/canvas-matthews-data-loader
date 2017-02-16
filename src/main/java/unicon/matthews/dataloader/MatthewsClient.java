@@ -13,12 +13,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import unicon.matthews.caliper.Envelope;
 import unicon.matthews.caliper.Event;
+import unicon.matthews.dataloader.DataSync.DataSyncType;
 import unicon.matthews.entity.ClassMapping;
 import unicon.matthews.entity.UserMapping;
 import unicon.matthews.oneroster.Enrollment;
@@ -210,5 +213,38 @@ public class MatthewsClient {
 
     restTemplate
         .exchange(url, HttpMethod.POST, h, String.class);
+  }
+  
+  public void postDataSync(DataSync dataSync) {
+    HttpEntity<DataSync> he = new HttpEntity<DataSync>(dataSync, this.httpHeaders);
+    
+    String path = "/api/sync";
+    String url = this.baseUrl + path;
+
+    restTemplate
+        .exchange(url, HttpMethod.POST, he, JsonObject.class);
+
+  }
+  
+  public DataSync getLatestDataSyncForType(DataSyncType dataSyncType) {
+    DataSync dataSync = null;
+    
+    String path = "/api/sync/".concat(dataSyncType.toString()).concat("/latest");
+    String url = this.baseUrl + path;
+    
+    ResponseEntity<DataSync> response = null;
+    try {
+      response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(this.httpHeaders), DataSync.class);
+    } 
+    catch (RestClientException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    if (response != null && response.getStatusCode() == HttpStatus.OK) {
+      dataSync = response.getBody();
+    }
+  
+    return dataSync;
   }
 }

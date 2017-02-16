@@ -21,6 +21,7 @@ public class SupportingEntities {
     Collection<CanvasEnrollmentTermDimension> enrollmentTerms;
     Map<String, Class> classes;
     Map<String, User> users;
+    Map<String, String> userEmailMap;
     Collection<CanvasDataPseudonymDimension> pseudonymDimensions;
     Map<String, Enrollment> enrollments;
     Map<String, LineItem> lineItems;
