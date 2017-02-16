@@ -30,6 +30,8 @@ import unicon.matthews.dataloader.canvas.model.CanvasCommunicationChannelDimensi
 import unicon.matthews.dataloader.canvas.model.CanvasCourseSectionDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasDataDump;
 import unicon.matthews.dataloader.canvas.model.CanvasDataPseudonymDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasDiscussionForumEntryDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasDiscussionForumEntryFact;
 import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentTermDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
@@ -97,7 +99,7 @@ public class CanvasDataLoader implements DataLoader {
 //              Options.builder().withArtifactDownloads().build());
 
       // Uncomment and use this one once you have the dump downloded and comment above.
-//      CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-22"),Options.NONE);
+      // CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-15"),Options.NONE);
 
       // Dump passed to the processors below needs to have been downloaded, or they will fail.
       
@@ -236,11 +238,12 @@ public class CanvasDataLoader implements DataLoader {
                   CanvasDataPseudonymDimension.class).read(dump);
   
           Collection<CanvasPageRequest> pageRequests = CanvasDataDumpReader.forType(CanvasPageRequest.class).read(dump);
-  
+
           supportingEntities = SupportingEntities.builder()
                   .classes(classMap)
                   .userEmailMap(userEmailMap)
                   .users(userMap)
+                  .canvasUserDimensions(canvasUsers)
                   .pseudonymDimensions(pseudonymDimensions)
                   .enrollments(enrollmentMap)
                   .lineItems(lineItemMap)
@@ -263,6 +266,15 @@ public class CanvasDataLoader implements DataLoader {
                   CanvasDataDumpReader.forType(CanvasQuizSubmissionHistoricalDimension.class).read(dump);
   
           // Quiz events are incomplete - need to add converter(s) and conversion method in CanvasConversionService
+
+          Collection<CanvasDiscussionForumEntryFact> discussionForumEntryFacts = CanvasDataDumpReader.forType(
+                  CanvasDiscussionForumEntryFact.class).read(dump);
+          Collection<CanvasDiscussionForumEntryDimension> discussionForumEntryDimensions = CanvasDataDumpReader.forType(
+                  CanvasDiscussionForumEntryDimension.class).read(dump);
+          supportingEntities.setDiscussionForumEntryDimensions(discussionForumEntryDimensions);
+          List<Event> discussionForumEntryEvents = canvasConversionService.convertCanvasDiscussionForumEntries(
+                  discussionForumEntryFacts, supportingEntities);
+          matthewsClient.postEvents(discussionForumEntryEvents, SENSOR_ID_DUMP_READER);
   
           // TODO - Need to develop more Page Request Event converters
           List<Event> events = canvasConversionService.convertPageRequests(pageRequests, supportingEntities);
@@ -283,13 +295,10 @@ public class CanvasDataLoader implements DataLoader {
       else {
         logger.debug("No dumps to process");
       }
-
-    } 
+    }
     catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
-    } 
-
+    }
   }
-
 }
