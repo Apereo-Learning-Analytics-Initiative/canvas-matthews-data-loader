@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import unicon.matthews.caliper.Event;
 import unicon.matthews.dataloader.canvas.model.CanvasAssignmentDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasCourseSectionDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasDiscussionForumEntryDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasDiscussionForumEntryFact;
 import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizDimension;
@@ -27,7 +29,7 @@ public class CanvasConversionService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private List<Converter<CanvasPageRequest, Optional<Event>> >pageRequestToEventConverters;
+    private List<Converter<CanvasPageRequest, Optional<Event>>> pageRequestToEventConverters;
     
     @Autowired
     private CanvasClassConverter canvasClassConverter;
@@ -43,6 +45,9 @@ public class CanvasConversionService {
     
     @Autowired
     private CanvasQuizConverter canvasQuizConverter;
+
+    @Autowired
+    private CanvasDiscussionForumEntryToCaliperEventConverter canvasDiscussionForumEntryToCaliperEventConverter;
     
     public List<Event> convertPageRequests(Collection<CanvasPageRequest> sourceItems,
             SupportingEntities supportingEntities) {
@@ -168,6 +173,29 @@ public class CanvasConversionService {
       }
       
       return lineItems;
+    }
+
+    public List<Event> convertCanvasDiscussionForumEntries(Collection<CanvasDiscussionForumEntryFact> forumEntryFacts,
+            SupportingEntities supportingEntities) {
+        List<Event> events = new ArrayList<>();
+
+        Optional<Event> event = null;
+
+        for (CanvasDiscussionForumEntryFact sourceItem : forumEntryFacts) {
+
+            event = canvasDiscussionForumEntryToCaliperEventConverter.convert(sourceItem, supportingEntities);
+
+            if (event.isPresent()) {
+                events.add(event.get());
+                logger.debug("Canvas Discussion Forum Entry Fact Conversion PROCESSED: From {} > EVENT: {}",
+                        sourceItem.toString(), event.get().toString());
+            } else {
+                logger.debug("Canvas Discussion Forum Entry Fact Conversion PROCESSED: From {} > NO EVENT",
+                        sourceItem.toString());
+            }
+        }
+
+        return events;
     }
 
 }
