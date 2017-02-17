@@ -46,6 +46,14 @@ public class CanvasAssignmentConverter implements Converter<CanvasAssignmentDime
       dueDate = LocalDateTime.ofInstant(dueDateInstant.get(),ZoneOffset.UTC);
     }
     
+    Status status = null;
+    if ("published".equalsIgnoreCase(source.getWorkflowState())) {
+      status = Status.active;
+    }
+    else {
+      status = Status.inactive;
+    }
+ 
     String classId = String.valueOf(source.getCourseId().get());
 
     Class klass = null;
@@ -57,6 +65,7 @@ public class CanvasAssignmentConverter implements Converter<CanvasAssignmentDime
     LineItem lineItem
       = new LineItem.Builder()
           .withSourcedId(sourcedId)
+          .withStatus(status)
           .withTitle(title)
           .withCategory(lineItemCategory)
           .withDueDate(dueDate)

@@ -297,4 +297,10 @@ public class EventBuilderUtils {
         return usingBaseEvent()
                 .withType(CaliperV1p1Vocab.Event.MESSAGE_EVENT);
     }
+    
+    public static Event.Builder usingViewedEventType() {
+      return usingBaseEvent()
+          .withType(CaliperV1p1Vocab.Event.VIEW_EVENT)
+          .withAction(CaliperV1p1Vocab.Action.VIEWED);
+    }
 }

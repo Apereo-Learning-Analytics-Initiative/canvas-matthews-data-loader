@@ -61,11 +61,11 @@ public class CanvasConversionService {
             Optional<Converter<CanvasPageRequest, Optional<Event>>> selectedConverter =
                     pageRequestToEventConverters.stream().filter(converter -> converter.supports(sourceItem)).findFirst();
 
-            if (selectedConverter.isPresent()) {
+            if (selectedConverter != null && selectedConverter.isPresent()) {
 
                 event = selectedConverter.get().convert(sourceItem, supportingEntities);
 
-                if (event.isPresent()) {
+                if (event != null && event.isPresent()) {
                     events.add(event.get());
                     logger.debug("Page Request Conversion PROCESSED by converter {} : From {} > EVENT: {}",
                             selectedConverter.get().getClass().getSimpleName(), sourceItem.toString(),
