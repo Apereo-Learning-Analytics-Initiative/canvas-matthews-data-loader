@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import unicon.matthews.dataloader.canvas.io.deserialize.IsoDateTimeWithOptionalFractionOfSecondDeserializer;
 import unicon.matthews.dataloader.canvas.io.deserialize.NullableIsoDateTimeWithOptionalFractionOfSecondDeserializer;
 import unicon.matthews.dataloader.canvas.io.deserialize.ReadableCanvasDumpArtifact;
 
@@ -36,31 +37,31 @@ public class CanvasQuizSubmissionDimension implements ReadableCanvasDumpArtifact
      * <blockquote>Unique surrogate ID for the quiz submission.</blockquote>
      */
     @JsonProperty("id")
-    protected long id;
+    protected Long id;
 
     /**
      * <blockquote>Primary key for this quiz submission in the 'quiz_submissions' Canvas table.</blockquote>
      */
     @JsonProperty("canvas_id")
-    protected long canvasId;
+    protected Long canvasId;
 
     /**
      * <blockquote>ID of the quiz the quiz submission represents. Foreign key to the quiz dimension table.</blockquote>
      */
     @JsonProperty("quiz_id")
-    protected long quizId;
+    protected Long quizId;
 
     /**
      * <blockquote>ID to the submission the quiz submission represents. Foreign key to the quiz submission dimension table.</blockquote>
      */
     @JsonProperty("submission_id")
-    protected long submissionId;
+    protected Long submissionId;
 
     /**
      * <blockquote>ID of the user (who is a student) who made the submission. Foreign key to the user dimension table.</blockquote>
      */
     @JsonProperty("user_id")
-    protected long userId;
+    protected Long userId;
 
     /**
      * This is the only field which differs in field description with the historical quiz submission dimension data.
@@ -117,8 +118,8 @@ public class CanvasQuizSubmissionDimension implements ReadableCanvasDumpArtifact
     /**
      * <blockquote>Time when the quiz submission was created.</blockquote>
      * <p>This field is actually optional and may be null (data value <em>\N</em>), even though the Canvas
-     * documentation does not state that. Primarily may be null in the historical dimension when the submission_state is
-     * 'previous_submission'.</p>
+     * documentation does not state that.</p>
+     * Primarily may be null in the historical dimension when the submission_state is 'previous_submission'.
      */
     @JsonProperty("created_at")
     @JsonDeserialize(using = NullableIsoDateTimeWithOptionalFractionOfSecondDeserializer.class)
@@ -127,8 +128,7 @@ public class CanvasQuizSubmissionDimension implements ReadableCanvasDumpArtifact
     /**
      * <blockquote>Time when the quiz submission was last updated.</blockquote>
      * <p>This field is actually optional and may be null (data value <em>\N</em>), even though the Canvas
-     * documentation does not state that. Primarily may be null in the historical dimension when the submission_state is
-     * 'previous_submission'.</p>
+     * documentation does not state that.</p>
      */
     @JsonProperty("updated_at")
     @JsonDeserialize(using = NullableIsoDateTimeWithOptionalFractionOfSecondDeserializer.class)
@@ -137,8 +137,7 @@ public class CanvasQuizSubmissionDimension implements ReadableCanvasDumpArtifact
     /**
      * <blockquote>Time at which the student started the quiz submission.</blockquote>
      * <p>This field is actually optional and may be null (data value <em>\N</em>), even though the Canvas
-     * documentation does not state that. Primarily may be null in the historical dimension when the submission_state is
-     * 'previous_submission'.</p>
+     * documentation does not state that.</p>
      */
     @JsonProperty("started_at")
     @JsonDeserialize(using = NullableIsoDateTimeWithOptionalFractionOfSecondDeserializer.class)

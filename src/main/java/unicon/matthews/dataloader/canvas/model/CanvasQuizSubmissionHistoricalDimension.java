@@ -2,12 +2,17 @@ package unicon.matthews.dataloader.canvas.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import unicon.matthews.dataloader.canvas.io.deserialize.IsoDateTimeWithOptionalFractionOfSecondDeserializer;
+import unicon.matthews.dataloader.canvas.io.deserialize.NullableIsoDateTimeWithOptionalFractionOfSecondDeserializer;
 
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Canvas data dump dimensions about historical quiz submissions.
@@ -51,7 +56,7 @@ public class CanvasQuizSubmissionHistoricalDimension extends CanvasQuizSubmissio
      * <blockquote>Version number of this quiz submission.</blockquote>
      */
     @JsonProperty("version_number")
-    private int versionNumber;
+    private Integer versionNumber;
 
     /**
      * <blockquote>Denotes if the quiz submission is a current or previous submission. Possible values are

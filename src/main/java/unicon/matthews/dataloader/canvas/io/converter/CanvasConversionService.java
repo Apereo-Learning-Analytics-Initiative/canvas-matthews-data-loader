@@ -13,6 +13,7 @@ import unicon.matthews.dataloader.canvas.model.CanvasDiscussionForumEntryFact;
 import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionFact;
 import unicon.matthews.dataloader.canvas.model.CanvasUserDimension;
 import unicon.matthews.oneroster.Enrollment;
 import unicon.matthews.oneroster.LineItem;
@@ -45,6 +46,9 @@ public class CanvasConversionService {
     
     @Autowired
     private CanvasQuizConverter canvasQuizConverter;
+
+    @Autowired
+    private CanvasQuizSubmissionEventConverter canvasQuizSubmissionEventConverter;
 
     @Autowired
     private CanvasDiscussionForumEntryToCaliperEventConverter canvasDiscussionForumEntryToCaliperEventConverter;
@@ -191,6 +195,29 @@ public class CanvasConversionService {
                         sourceItem.toString(), event.get().toString());
             } else {
                 logger.debug("Canvas Discussion Forum Entry Fact Conversion PROCESSED: From {} > NO EVENT",
+                        sourceItem.toString());
+            }
+        }
+
+        return events;
+    }
+
+    public List<Event> convertCanvasQuizSubmissions(Collection<CanvasQuizSubmissionFact> quizSubmissionFacts,
+            SupportingEntities supportingEntities) {
+        List<Event> events = new ArrayList<>();
+
+        Optional<Event> event = null;
+
+        for (CanvasQuizSubmissionFact sourceItem : quizSubmissionFacts) {
+
+            event = canvasQuizSubmissionEventConverter.convert(sourceItem, supportingEntities);
+
+            if (event.isPresent()) {
+                events.add(event.get());
+                logger.debug("Canvas Quiz Submission Fact Conversion PROCESSED: From {} > EVENT: {}",
+                        sourceItem.toString(), event.get().toString());
+            } else {
+                logger.debug("Canvas Quiz Submission Fact Conversion PROCESSED: From {} > NO EVENT",
                         sourceItem.toString());
             }
         }
