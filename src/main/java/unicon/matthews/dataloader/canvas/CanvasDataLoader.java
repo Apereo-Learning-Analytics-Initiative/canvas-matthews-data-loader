@@ -283,6 +283,7 @@ public class CanvasDataLoader implements DataLoader {
           // Discussion Forum Entry Events
           Collection<CanvasDiscussionForumEntryFact> discussionForumEntryFacts = CanvasDataDumpReader.forType(
                   CanvasDiscussionForumEntryFact.class).read(dump);
+          supportingEntities.setDiscussionForumEntryFacts(discussionForumEntryFacts);
           Collection<CanvasDiscussionForumEntryDimension> discussionForumEntryDimensions = CanvasDataDumpReader.forType(
                   CanvasDiscussionForumEntryDimension.class).read(dump);
           supportingEntities.setDiscussionForumEntryDimensions(discussionForumEntryDimensions);

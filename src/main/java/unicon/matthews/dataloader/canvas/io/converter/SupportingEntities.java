@@ -7,6 +7,7 @@ import unicon.matthews.dataloader.canvas.model.CanvasAssignmentDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasAssignmentSubmissionDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasDataPseudonymDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasDiscussionForumEntryDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasDiscussionForumEntryFact;
 import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentTermDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
 import unicon.matthews.dataloader.canvas.model.CanvasQuizSubmissionDimension;
@@ -35,6 +36,7 @@ public class SupportingEntities {
     Map<String, LineItem> lineItems;
     Collection<CanvasPageRequest> pageRequests;
     Collection<CanvasDiscussionForumEntryDimension> discussionForumEntryDimensions;
+    Collection<CanvasDiscussionForumEntryFact> discussionForumEntryFacts;
     Collection<CanvasQuizSubmissionDimension> canvasQuizSubmissionDimensions;
     Collection<CanvasQuizSubmissionHistoricalDimension> canvasQuizSubmissionHistoricalDimensions;
     Collection<CanvasAssignmentSubmissionDimension> canvasAssignmentSubmissionDimensions;
