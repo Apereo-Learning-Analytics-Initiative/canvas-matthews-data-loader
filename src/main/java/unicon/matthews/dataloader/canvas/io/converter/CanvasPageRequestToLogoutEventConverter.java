@@ -1,5 +1,6 @@
 package unicon.matthews.dataloader.canvas.io.converter;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import unicon.matthews.caliper.Agent;
 import unicon.matthews.caliper.Entity;
@@ -33,7 +34,7 @@ public class CanvasPageRequestToLogoutEventConverter implements Converter<Canvas
     public boolean supports(CanvasPageRequest source) {
         return source.getWebApplicationController().equalsIgnoreCase("login") &&
                 source.getWebApplicationAction().equalsIgnoreCase("destroy") &&
-                source.getHttpStatus().equals("200");
+                source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()));
     }
 
     @Override

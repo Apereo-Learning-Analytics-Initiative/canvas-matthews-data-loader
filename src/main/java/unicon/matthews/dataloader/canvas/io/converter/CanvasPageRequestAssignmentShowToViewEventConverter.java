@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import unicon.matthews.caliper.Entity;
@@ -28,7 +29,7 @@ public class CanvasPageRequestAssignmentShowToViewEventConverter
   public boolean supports(CanvasPageRequest source) {
     return (source.getWebApplicationController().equalsIgnoreCase("assignments")) &&
         (source.getWebApplicationAction().equalsIgnoreCase("show")) &&
-        source.getHttpStatus().equals("200");
+        source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()));
   }
 
   @Override
