@@ -80,51 +80,51 @@ public class CanvasQuizSubmissionFact implements ReadableCanvasDumpArtifact<Canv
      * <blockquote>Foreign key to the course this submission belongs to.</blockquote>
      */
     @JsonProperty("course_id")
-    private long courseId;
+    private Long courseId;
 
     /**
      * <blockquote>Foreign key to the enrollment term of the course this submission belongs to.</blockquote>
      */
     @JsonProperty("enrollment_term_id")
-    private long enrollmentTermId;
+    private Long enrollmentTermId;
 
     /**
      * <blockquote>Foreign key to the account of the course this submission belongs to</blockquote>
      */
     @JsonProperty("course_account_id")
-    private long courseAccountId;
+    private Long courseAccountId;
 
     /**
      * <blockquote>ID of the quiz the quiz submission represents. Foreign key to the quiz dimension table.</blockquote>
      */
     @JsonProperty("quiz_id")
-    private long quizId;
+    private Long quizId;
 
     /**
      * <blockquote>Foreign key to the assignment the quiz belongs to.</blockquote>
      */
     @JsonProperty("assignment_id")
-    private long assignmentId;
+    private Long assignmentId;
 
     /**
      * <blockquote>ID of the user (who is a student) who made the submission. Foreign key to the user dimension
      * table.</blockquote>
      */
     @JsonProperty("user_id")
-    private long userId;
+    private Long userId;
 
     /**
      * <blockquote>ID to the submission the quiz submission represents. Foreign key to the quiz submission dimension
      * table.</blockquote>
      */
     @JsonProperty("submission_id")
-    private long submissionId;
+    private Long submissionId;
 
     /**
      * <blockquote>Foreign key to the enrollment roll-up dimension table.</blockquote>
      */
     @JsonProperty("enrollment_rollup_id")
-    private long enrollmentRollupId;
+    private Long enrollmentRollupId;
 
     /**
      * This is the only field which differs in field name between the two artifact dumps. Same value, so they are mapped
@@ -132,13 +132,13 @@ public class CanvasQuizSubmissionFact implements ReadableCanvasDumpArtifact<Canv
      * <blockquote>Foreign key to the quiz submission dimension table.</blockquote>
      */
     @JsonProperty("quiz_submission_id_OR_quiz_submission_historical_id")
-    private long quizSubmissionId;
+    private Long quizSubmissionId;
 
     /**
      * <blockquote>Maximum points that can be scored in this quiz.</blockquote>
      */
     @JsonProperty("quiz_points_possible")
-    private double quizPointsPossible;
+    private Double quizPointsPossible;
 
     /**
      * <blockquote>Original score of the quiz submission prior to any re-grading. It's NULL if the submission has never
@@ -153,27 +153,27 @@ public class CanvasQuizSubmissionFact implements ReadableCanvasDumpArtifact<Canv
      * positive. Defaults to 0.</blockquote>
      */
     @JsonProperty("fudge_points")
-    private double fudgePoints;
+    private Double fudgePoints;
 
     /**
      * <blockquote>Denotes the total number of attempts made by the student for the quiz. Is valid only if the quiz
      * allows multiple attempts.</blockquote>
      */
     @JsonProperty("total_attempts")
-    private int totalAttempts;
+    private Integer totalAttempts;
 
     /**
      * <blockquote>Number of times the student was allowed to re-take the quiz over the multiple-attempt
      * limit.</blockquote>
      */
     @JsonProperty("extra_attempts")
-    private int extraAttempts;
+    private Integer extraAttempts;
 
     /**
      * <blockquote>Amount of extra time allowed for the quiz submission, in minutes</blockquote>
      */
     @JsonProperty("extra_time")
-    private int extraTimeInMinutes;
+    private Integer extraTimeInMinutes;
 
     /**
      * <blockquote>Time taken, in seconds, to finish the quiz.</blockquote>

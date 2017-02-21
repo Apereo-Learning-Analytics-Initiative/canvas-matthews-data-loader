@@ -101,8 +101,19 @@ public class CanvasDataLoader implements DataLoader {
       // Uncomment and use this one once you have the dump downloded and comment above.
       // CanvasDataDump dump = canvasDataApiClient.getDump(LocalDate.parse("2017-01-15"),Options.NONE);
 
+      // Example of filtering results to only include a specific artifact (when multiple available) and also to filter
+      // those which have end dates and are after a specified date.
+      // Collection<CanvasQuizSubmissionFact> quizSubmissionFacts = CanvasDataDumpReader.forType(
+      //        CanvasQuizSubmissionFact.class)
+      //        .includeOnly(CanvasQuizSubmissionFact.Types.quiz_submission_fact)
+      //        .withFilter(canvasQuizSubmissionFact ->
+      //                canvasQuizSubmissionFact.getDate().isPresent() ? canvasQuizSubmissionFact.getDate().get().isAfter(
+      //                        LocalDate.parse("2016-10-21").atStartOfDay(ZoneOffset.UTC).toInstant()) : false
+      //        ).read(dump);
+
       // Dump passed to the processors below needs to have been downloaded, or they will fail.
       
+
       if (dumps != null && !dumps.isEmpty()) {
         
         logger.debug("Processing {} dumps from {} to {}",dumps.size(),dumpStartDate,dumpEndDate);
@@ -251,22 +262,21 @@ public class CanvasDataLoader implements DataLoader {
                   .enrollmentTerms(enrollmentTerms)
                   .build();
   
-          // Example of filtering results to only include a specific artifact (when multiple available) and also to filter
-          // those which have end dates and are after a specified date.
+          // Quiz Submission Events
           Collection<CanvasQuizSubmissionFact> quizSubmissionFacts = CanvasDataDumpReader.forType(
-                  CanvasQuizSubmissionFact.class)
-                  .includeOnly(CanvasQuizSubmissionFact.Types.quiz_submission_fact)
-                  .withFilter(canvasQuizSubmissionFact ->
-                          canvasQuizSubmissionFact.getDate().isPresent() ? canvasQuizSubmissionFact.getDate().get().isAfter(
-                                  LocalDate.parse("2016-10-21").atStartOfDay(ZoneOffset.UTC).toInstant()) : false
-                  ).read(dump);
+                  CanvasQuizSubmissionFact.class).includeOnly(CanvasQuizSubmissionFact.Types.quiz_submission_fact)
+                  .read(dump);
           Collection<CanvasQuizSubmissionDimension> quizSubmissionDimensions = CanvasDataDumpReader.forType(
                   CanvasQuizSubmissionDimension.class).read(dump);
+          supportingEntities.setCanvasQuizSubmissionDimensions(quizSubmissionDimensions);
           Collection<CanvasQuizSubmissionHistoricalDimension> quizSubmissionHistoricalDimensions =
                   CanvasDataDumpReader.forType(CanvasQuizSubmissionHistoricalDimension.class).read(dump);
-  
-          // Quiz events are incomplete - need to add converter(s) and conversion method in CanvasConversionService
+          supportingEntities.setCanvasQuizSubmissionHistoricalDimensions(quizSubmissionHistoricalDimensions);
+          List<Event> quizSubmissionEvents = canvasConversionService.convertCanvasQuizSubmissions(
+                  quizSubmissionFacts, supportingEntities);
+          matthewsClient.postEvents(quizSubmissionEvents, SENSOR_ID_DUMP_READER);
 
+          // Discussion Forum Entry Events
           Collection<CanvasDiscussionForumEntryFact> discussionForumEntryFacts = CanvasDataDumpReader.forType(
                   CanvasDiscussionForumEntryFact.class).read(dump);
           Collection<CanvasDiscussionForumEntryDimension> discussionForumEntryDimensions = CanvasDataDumpReader.forType(
