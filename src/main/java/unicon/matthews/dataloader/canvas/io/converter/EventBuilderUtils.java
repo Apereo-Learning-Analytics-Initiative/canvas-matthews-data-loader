@@ -198,7 +198,7 @@ public class EventBuilderUtils {
             public static final String MARKED_AS_UNREAD = "MarkedAsUnread";
             public static final String MODIFIED = "Modified";
             public static final String MUTED = "Muted";
-            public static final String NAVIGATEDTO = "NavigatedTo";
+            public static final String NAVIGATED_TO = "NavigatedTo";
             public static final String OPENEDPOPOUT = "OpenedPopout";
             public static final String PAUSED = "Paused";
             public static final String POSTED = "Posted";
@@ -305,6 +305,12 @@ public class EventBuilderUtils {
       return usingBaseEvent()
           .withType(CaliperV1p1Vocab.Event.VIEW_EVENT)
           .withAction(CaliperV1p1Vocab.Action.VIEWED);
+    }
+
+    public static Event.Builder usingNavigationEventType() {
+        return usingBaseEvent()
+                .withType(CaliperV1p1Vocab.Event.NAVIGATION_EVENT)
+                .withAction(CaliperV1p1Vocab.Action.NAVIGATED_TO);
     }
 
     public static Event.Builder usingQuizSubmissionEventType() {
