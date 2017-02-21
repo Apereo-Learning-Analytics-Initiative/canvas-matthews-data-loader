@@ -48,14 +48,6 @@ public class CanvasDiscussionForumEntryToCaliperEventConverter implements Conver
         CanvasUserDimension canvasUserDimension = supportingEntities.getCanvasUserDimensions().stream().filter(
                 u -> u.getId().equalsIgnoreCase(discussionForumEntryFact.getUserId().toString())).findFirst().get();
 
-        // Doing a lookup by user ID does not guarantee the actual pseudonym used for that login, it is only
-        // guaranteed if they only have one
-        Optional<CanvasDataPseudonymDimension> pseudonym = supportingEntities.getPseudonymDimensions().stream().filter(
-                p -> p.getUserId().toString().equalsIgnoreCase(user.getSourcedId())
-        ).findFirst();
-
-        String userLogin = pseudonym.isPresent() ? pseudonym.get().getUniqueName() : "Unknown Login";
-
         LocalDateTime eventTime = LocalDateTime.ofInstant(discussionForumEntryDimension.getCreatedAt(), ZoneId.of("UTC"));
 
         Enrollment enrollment = supportingEntities.getEnrollments().values().stream().filter(
@@ -65,8 +57,8 @@ public class CanvasDiscussionForumEntryToCaliperEventConverter implements Conver
         Event event = EventBuilderUtils.usingMessageEventType()
                 .withAction(EventBuilderUtils.CaliperV1p1Vocab.Action.POSTED)
                 .withEventTime(eventTime)
-                .withAgent(usingPersonType(user, user.getUserId(), userLogin,
-                        canvasUserDimension.getRootAccountId().get().toString()).build())
+                .withAgent(usingPersonType(user, user.getUserId(), supportingEntities.getUserEmailMap().get(
+                        user.getSourcedId()), canvasUserDimension.getRootAccountId().get().toString()).build())
                 .withObject(new Entity.Builder()
                         .withId(discussionForumEntryDimension.getId().toString())
                         .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.MESSAGE)

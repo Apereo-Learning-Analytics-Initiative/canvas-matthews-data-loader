@@ -229,6 +229,9 @@ public class EventBuilderUtils {
     }
 
     public static Agent.Builder usingPersonType(User user, String realUserId, String userLogin, String rootAccountId) {
+        if (userLogin == null) {
+            userLogin = "unknown";
+        }
         return new Agent.Builder()
                 .withType(CaliperV1p1Vocab.Entity.PERSON)
                 .withId(user.getSourcedId())
