@@ -140,6 +140,7 @@ public class EventBuilderUtils {
         }
 
         public static class Event {
+            public static final String BASIC_EVENT ="Event"; // See https://github.com/IMSGlobal/caliper-spec/blob/master/caliper.md#basicProfile
             public static final String ANNOTATION_EVENT = "AnnotationEvent";
             public static final String ASSESSMENT_EVENT = "AssessmentEvent";
             public static final String ASSESSMENT_ITEM_EVENT = "AssessmentItemEvent";
