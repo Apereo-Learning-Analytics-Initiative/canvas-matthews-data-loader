@@ -1,5 +1,6 @@
 package unicon.matthews.dataloader.canvas.io.converter;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import unicon.matthews.caliper.Event;
 import unicon.matthews.dataloader.canvas.model.CanvasDataPseudonymDimension;
@@ -30,7 +31,7 @@ public class CanvasPageRequestToLoginEventConverter implements Converter<CanvasP
         return (source.getWebApplicationController().equalsIgnoreCase("login/canvas")) &&
                 (source.getWebApplicationAction().equalsIgnoreCase("new") ||
                         source.getWebApplicationAction().equalsIgnoreCase("create")) &&
-                source.getHttpStatus().equals("200");
+                source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()));
     }
 
     @Override

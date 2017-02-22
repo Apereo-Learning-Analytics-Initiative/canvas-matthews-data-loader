@@ -10,11 +10,11 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import unicon.matthews.caliper.Entity;
 import unicon.matthews.caliper.Event;
-import unicon.matthews.dataloader.canvas.model.CanvasDataPseudonymDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
 import unicon.matthews.oneroster.Enrollment;
 import unicon.matthews.oneroster.User;
@@ -29,13 +29,12 @@ public class CanvasPageRequestAssignmentShowToViewEventConverter
   public boolean supports(CanvasPageRequest source) {
     return (source.getWebApplicationController().equalsIgnoreCase("assignments")) &&
         (source.getWebApplicationAction().equalsIgnoreCase("show")) &&
-        source.getHttpStatus().equals("200");
+        source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()));
   }
 
   @Override
   public Optional<Event> convert(CanvasPageRequest source, SupportingEntities supportingEntities) {
-    
-    
+
     logger.debug("Source: {}",source);
     
     Optional<Event> result = null;
@@ -52,14 +51,6 @@ public class CanvasPageRequestAssignmentShowToViewEventConverter
         if (maybeUser != null & maybeUser.isPresent()) {
           User user = maybeUser.get();
           
-          CanvasDataPseudonymDimension pseudonym = supportingEntities.getPseudonymDimensions().stream().filter(
-                  p -> p.getUserId().toString().equalsIgnoreCase(String.valueOf(userId.get()))
-          ).findFirst().get();
-
-
-          String userLogin = pseudonym.getUniqueName();
-          String rootAccountId = source.getRootAccountId().toString();
-
           LocalDateTime eventTime = LocalDateTime.ofInstant(source.getTimestamp(), ZoneId.of("UTC"));
 
           Event event;
@@ -89,7 +80,8 @@ public class CanvasPageRequestAssignmentShowToViewEventConverter
               event = EventBuilderUtils.usingViewedEventType()
                       .withObject(assignmentObject)
                       .withEventTime(eventTime)
-                      .withAgent(usingPersonType(user, String.valueOf(userId.get()), userLogin, rootAccountId).build())
+                      .withAgent(usingPersonType(user, user.getUserId(), supportingEntities.getUserEmailMap().get(
+                              user.getSourcedId()), source.getRootAccountId().toString()).build())
                       .withGroup(usingCourseSectionGroup(enrollment).build())
                       .withMembership(usingMembership(enrollment).build())
                       .withFederatedSession(source.getSessionId())

@@ -140,6 +140,7 @@ public class EventBuilderUtils {
         }
 
         public static class Event {
+            public static final String BASIC_EVENT ="Event"; // See https://github.com/IMSGlobal/caliper-spec/blob/master/caliper.md#basicProfile
             public static final String ANNOTATION_EVENT = "AnnotationEvent";
             public static final String ASSESSMENT_EVENT = "AssessmentEvent";
             public static final String ASSESSMENT_ITEM_EVENT = "AssessmentItemEvent";
@@ -198,7 +199,7 @@ public class EventBuilderUtils {
             public static final String MARKED_AS_UNREAD = "MarkedAsUnread";
             public static final String MODIFIED = "Modified";
             public static final String MUTED = "Muted";
-            public static final String NAVIGATEDTO = "NavigatedTo";
+            public static final String NAVIGATED_TO = "NavigatedTo";
             public static final String OPENEDPOPOUT = "OpenedPopout";
             public static final String PAUSED = "Paused";
             public static final String POSTED = "Posted";
@@ -229,6 +230,9 @@ public class EventBuilderUtils {
     }
 
     public static Agent.Builder usingPersonType(User user, String realUserId, String userLogin, String rootAccountId) {
+        if (userLogin == null) {
+            userLogin = "unknown";
+        }
         return new Agent.Builder()
                 .withType(CaliperV1p1Vocab.Entity.PERSON)
                 .withId(user.getSourcedId())
@@ -302,6 +306,12 @@ public class EventBuilderUtils {
       return usingBaseEvent()
           .withType(CaliperV1p1Vocab.Event.VIEW_EVENT)
           .withAction(CaliperV1p1Vocab.Action.VIEWED);
+    }
+
+    public static Event.Builder usingNavigationEventType() {
+        return usingBaseEvent()
+                .withType(CaliperV1p1Vocab.Event.NAVIGATION_EVENT)
+                .withAction(CaliperV1p1Vocab.Action.NAVIGATED_TO);
     }
 
     public static Event.Builder usingQuizSubmissionEventType() {
