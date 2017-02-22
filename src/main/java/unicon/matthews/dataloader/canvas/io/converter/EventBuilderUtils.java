@@ -309,4 +309,11 @@ public class EventBuilderUtils {
                 .withType(CaliperV1p1Vocab.Event.ASSESSMENT_EVENT)
                 .withAction(CaliperV1p1Vocab.Action.COMPLETED);
     }
+    
+    public static Event.Builder usingAssignmentSubmissionEventType() {
+      return usingBaseEvent()
+              .withType(CaliperV1p1Vocab.Event.OUTCOME_EVENT)
+              .withAction(CaliperV1p1Vocab.Action.SUBMITTED);
+  }
+
 }

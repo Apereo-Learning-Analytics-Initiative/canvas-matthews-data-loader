@@ -1,5 +1,10 @@
 package unicon.matthews.dataloader.canvas.io.converter;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +12,8 @@ import org.springframework.stereotype.Component;
 
 import unicon.matthews.caliper.Event;
 import unicon.matthews.dataloader.canvas.model.CanvasAssignmentDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasAssignmentSubmissionFact;
 import unicon.matthews.dataloader.canvas.model.CanvasCourseSectionDimension;
-import unicon.matthews.dataloader.canvas.model.CanvasDiscussionForumEntryDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasDiscussionForumEntryFact;
 import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
@@ -18,11 +23,6 @@ import unicon.matthews.dataloader.canvas.model.CanvasUserDimension;
 import unicon.matthews.oneroster.Enrollment;
 import unicon.matthews.oneroster.LineItem;
 import unicon.matthews.oneroster.User;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
 
 @Component
 public class CanvasConversionService {
@@ -52,6 +52,9 @@ public class CanvasConversionService {
 
     @Autowired
     private CanvasDiscussionForumEntryToCaliperEventConverter canvasDiscussionForumEntryToCaliperEventConverter;
+    
+    @Autowired
+    private CanvasAssignmentSubmissionConverter canvasAssignmentSubmissionConverter;
     
     public List<Event> convertPageRequests(Collection<CanvasPageRequest> sourceItems,
             SupportingEntities supportingEntities) {
@@ -224,5 +227,29 @@ public class CanvasConversionService {
 
         return events;
     }
+    
+    public List<Event> convertCanvasAssignmentSubmissions(Collection<CanvasAssignmentSubmissionFact> assignmentSubmissionFacts,
+        SupportingEntities supportingEntities) {
+    List<Event> events = new ArrayList<>();
+
+    Optional<Event> event = null;
+
+    for (CanvasAssignmentSubmissionFact sourceItem : assignmentSubmissionFacts) {
+
+        event = canvasAssignmentSubmissionConverter.convert(sourceItem, supportingEntities);
+
+        if (event.isPresent()) {
+            events.add(event.get());
+            logger.debug("Canvas Assignment Submission Fact Conversion PROCESSED: From {} > EVENT: {}",
+                    sourceItem.toString(), event.get().toString());
+        } else {
+            logger.debug("Canvas Assignment Submission Fact Conversion PROCESSED: From {} > NO EVENT",
+                    sourceItem.toString());
+        }
+    }
+
+    return events;
+}
+
 
 }

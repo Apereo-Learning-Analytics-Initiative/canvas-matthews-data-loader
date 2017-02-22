@@ -3,6 +3,8 @@ package unicon.matthews.dataloader.canvas.io.converter;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Singular;
+import unicon.matthews.dataloader.canvas.model.CanvasAssignmentDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasAssignmentSubmissionDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasDataPseudonymDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasDiscussionForumEntryDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasEnrollmentTermDimension;
@@ -35,5 +37,6 @@ public class SupportingEntities {
     Collection<CanvasDiscussionForumEntryDimension> discussionForumEntryDimensions;
     Collection<CanvasQuizSubmissionDimension> canvasQuizSubmissionDimensions;
     Collection<CanvasQuizSubmissionHistoricalDimension> canvasQuizSubmissionHistoricalDimensions;
+    Collection<CanvasAssignmentSubmissionDimension> canvasAssignmentSubmissionDimensions;
 
 }

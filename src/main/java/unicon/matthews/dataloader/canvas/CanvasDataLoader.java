@@ -26,6 +26,8 @@ import unicon.matthews.dataloader.canvas.io.converter.CanvasConversionService;
 import unicon.matthews.dataloader.canvas.io.converter.SupportingEntities;
 import unicon.matthews.dataloader.canvas.io.deserialize.CanvasDataDumpReader;
 import unicon.matthews.dataloader.canvas.model.CanvasAssignmentDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasAssignmentSubmissionDimension;
+import unicon.matthews.dataloader.canvas.model.CanvasAssignmentSubmissionFact;
 import unicon.matthews.dataloader.canvas.model.CanvasCommunicationChannelDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasCourseSectionDimension;
 import unicon.matthews.dataloader.canvas.model.CanvasDataDump;
@@ -274,7 +276,9 @@ public class CanvasDataLoader implements DataLoader {
           supportingEntities.setCanvasQuizSubmissionHistoricalDimensions(quizSubmissionHistoricalDimensions);
           List<Event> quizSubmissionEvents = canvasConversionService.convertCanvasQuizSubmissions(
                   quizSubmissionFacts, supportingEntities);
-          matthewsClient.postEvents(quizSubmissionEvents, SENSOR_ID_DUMP_READER);
+           if (quizSubmissionEvents != null && !quizSubmissionEvents.isEmpty()) {
+             matthewsClient.postEvents(quizSubmissionEvents, SENSOR_ID_DUMP_READER);
+           }
 
           // Discussion Forum Entry Events
           Collection<CanvasDiscussionForumEntryFact> discussionForumEntryFacts = CanvasDataDumpReader.forType(
@@ -284,7 +288,21 @@ public class CanvasDataLoader implements DataLoader {
           supportingEntities.setDiscussionForumEntryDimensions(discussionForumEntryDimensions);
           List<Event> discussionForumEntryEvents = canvasConversionService.convertCanvasDiscussionForumEntries(
                   discussionForumEntryFacts, supportingEntities);
-          matthewsClient.postEvents(discussionForumEntryEvents, SENSOR_ID_DUMP_READER);
+          if (discussionForumEntryEvents != null && !discussionForumEntryEvents.isEmpty()) {
+            matthewsClient.postEvents(discussionForumEntryEvents, SENSOR_ID_DUMP_READER);
+          }
+          
+          // Assignment Submission Events
+          Collection<CanvasAssignmentSubmissionDimension> canvasAssignmentSubmissionDimensions
+            = CanvasDataDumpReader.forType(CanvasAssignmentSubmissionDimension.class).read(dump);
+          supportingEntities.setCanvasAssignmentSubmissionDimensions(canvasAssignmentSubmissionDimensions);
+          Collection<CanvasAssignmentSubmissionFact> canvasAssignmentSubmissionFacts
+            = CanvasDataDumpReader.forType(CanvasAssignmentSubmissionFact.class).read(dump);
+          List<Event> assignmentSubmissionEvents 
+            = canvasConversionService.convertCanvasAssignmentSubmissions(canvasAssignmentSubmissionFacts, supportingEntities);
+          if (assignmentSubmissionEvents != null && !assignmentSubmissionEvents.isEmpty()) {
+            matthewsClient.postEvents(assignmentSubmissionEvents, SENSOR_ID_DUMP_READER);
+          }
   
           // TODO - Need to develop more Page Request Event converters
           List<Event> events = canvasConversionService.convertPageRequests(pageRequests, supportingEntities);
