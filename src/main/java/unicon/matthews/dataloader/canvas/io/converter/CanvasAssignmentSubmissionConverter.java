@@ -24,8 +24,7 @@ public class CanvasAssignmentSubmissionConverter implements Converter<CanvasAssi
 
   @Override
   public boolean supports(CanvasAssignmentSubmissionFact source) {
-    // TODO Auto-generated method stub
-    return false;
+    return true;
   }
 
   @Override

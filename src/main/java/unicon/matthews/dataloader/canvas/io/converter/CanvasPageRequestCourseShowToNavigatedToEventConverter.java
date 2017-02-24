@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+
 import unicon.matthews.caliper.Entity;
 import unicon.matthews.caliper.Event;
 import unicon.matthews.dataloader.canvas.model.CanvasPageRequest;
@@ -27,10 +28,13 @@ public class CanvasPageRequestCourseShowToNavigatedToEventConverter
 
     @Override
     public boolean supports(CanvasPageRequest source) {
-        return (source.getWebApplicationController().equalsIgnoreCase("courses")) &&
+        return (
+                (source.getWebApplicationController().equalsIgnoreCase("courses")) &&
                 (source.getWebApplicationAction().equalsIgnoreCase("show")) &&
-                source.getHttpMthod().equalsIgnoreCase(HttpMethod.GET.toString()) &&
-                source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()));
+                (source.getHttpMthod().equalsIgnoreCase(HttpMethod.GET.toString())) &&
+                (source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()))
+                    || source.getHttpStatus().equals(String.valueOf(HttpStatus.NOT_MODIFIED.value())))
+              );
     }
 
     @Override

@@ -20,16 +20,18 @@ import unicon.matthews.oneroster.Enrollment;
 import unicon.matthews.oneroster.User;
 
 @Component
-public class CanvasPageRequestAssignmentShowToViewEventConverter
-  implements Converter<CanvasPageRequest, Optional<Event>> {
+public class CanvasPageRequestConversationsShowOrIndexToNavigatedToEventConverter   implements Converter<CanvasPageRequest, Optional<Event>> {
   
-  private static Logger logger = LoggerFactory.getLogger(CanvasPageRequestAssignmentShowToViewEventConverter.class);
+  private static Logger logger = LoggerFactory.getLogger(CanvasPageRequestAssignmentShowToNavigatedToEventConverter.class);
 
   @Override
   public boolean supports(CanvasPageRequest source) {
-    return (source.getWebApplicationController().equalsIgnoreCase("assignments")) &&
-        (source.getWebApplicationAction().equalsIgnoreCase("show")) &&
-        source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()));
+    return ( 
+            (source.getWebApplicationController().equalsIgnoreCase("conversations")) &&
+              (source.getWebApplicationAction().equalsIgnoreCase("show") || source.getWebApplicationAction().equalsIgnoreCase("index")) &&
+              (source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()))
+                  || source.getHttpStatus().equals(String.valueOf(HttpStatus.NOT_MODIFIED.value())))
+            );
   }
 
   @Override
@@ -61,23 +63,23 @@ public class CanvasPageRequestAssignmentShowToViewEventConverter
                       e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)).findFirst().get();
               
               Entity assignmentObject = null;
-              if (source.getAssignmentId() != null 
-                    && source.getAssignmentId().isPresent()) {
+              if (source.getConversationId() != null 
+                    && source.getConversationId().isPresent()) {
                 assignmentObject
                   = new Entity.Builder()
-                    .withId(String.valueOf(source.getAssignmentId().get()))
-                    .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.ASSIGNABLE_DIGITAL_RESOURCE)
+                    .withId(String.valueOf(source.getConversationId().get()))
+                    .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.DIGITAL_RESOURCE)
                     .build();
               }
               else {
                 assignmentObject
                 = new Entity.Builder()
                   .withId(source.getUrl())
-                  .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.ASSIGNABLE_DIGITAL_RESOURCE)
+                  .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.DIGITAL_RESOURCE)
                   .build();
               }
               
-              event = EventBuilderUtils.usingViewedEventType()
+              event = EventBuilderUtils.usingNavigationEventType()
                       .withObject(assignmentObject)
                       .withEventTime(eventTime)
                       .withAgent(usingPersonType(user, user.getUserId(), supportingEntities.getUserEmailMap().get(
@@ -100,5 +102,4 @@ public class CanvasPageRequestAssignmentShowToViewEventConverter
 
     return result;
   }
-
 }
