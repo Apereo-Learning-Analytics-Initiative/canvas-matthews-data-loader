@@ -21,15 +21,16 @@ import static unicon.matthews.dataloader.canvas.io.converter.EventBuilderUtils.u
 import static unicon.matthews.dataloader.canvas.io.converter.EventBuilderUtils.usingPersonType;
 
 @Component
-public class CanvasPageRequestQuizShowToNavigatedToEventConverter
+public class CanvasPageRequestQuizShowOrIndexToNavigatedToEventConverter
         implements Converter<CanvasPageRequest, Optional<Event>> {
 
-    private static Logger logger = LoggerFactory.getLogger(CanvasPageRequestQuizShowToNavigatedToEventConverter.class);
+    private static Logger logger = LoggerFactory.getLogger(CanvasPageRequestQuizShowOrIndexToNavigatedToEventConverter.class);
 
     @Override
     public boolean supports(CanvasPageRequest source) {
         return (source.getWebApplicationController().equalsIgnoreCase("quizzes/quizzes")) &&
-                (source.getWebApplicationAction().equalsIgnoreCase("show")) &&
+                (source.getWebApplicationAction().equalsIgnoreCase("show")
+                    || source.getWebApplicationAction().equalsIgnoreCase("index")) &&
                 source.getHttpMthod().equalsIgnoreCase(HttpMethod.GET.toString()) &&
                 source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()));
     }
@@ -79,7 +80,7 @@ public class CanvasPageRequestQuizShowToNavigatedToEventConverter
                     } else {
                         quizObject = new Entity.Builder()
                                 .withId(source.getUrl())
-                                .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.ASSIGNABLE_DIGITAL_RESOURCE)
+                                .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.DIGITAL_RESOURCE)
                                 .build();
                     }
 

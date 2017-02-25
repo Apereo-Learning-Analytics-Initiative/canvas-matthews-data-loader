@@ -20,9 +20,10 @@ import unicon.matthews.oneroster.Enrollment;
 import unicon.matthews.oneroster.User;
 
 @Component
-public class CanvasPageRequestConversationsShowOrIndexToNavigatedToEventConverter   implements Converter<CanvasPageRequest, Optional<Event>> {
+public class CanvasPageRequestConversationsShowOrIndexToNavigatedToEventConverter   
+  implements Converter<CanvasPageRequest, Optional<Event>> {
   
-  private static Logger logger = LoggerFactory.getLogger(CanvasPageRequestAssignmentShowToNavigatedToEventConverter.class);
+  private static Logger logger = LoggerFactory.getLogger(CanvasPageRequestConversationsShowOrIndexToNavigatedToEventConverter.class);
 
   @Override
   public boolean supports(CanvasPageRequest source) {
@@ -62,17 +63,17 @@ public class CanvasPageRequestConversationsShowOrIndexToNavigatedToEventConverte
               enrollment = supportingEntities.getEnrollments().values().stream().filter(
                       e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)).findFirst().get();
               
-              Entity assignmentObject = null;
+              Entity resource = null;
               if (source.getConversationId() != null 
                     && source.getConversationId().isPresent()) {
-                assignmentObject
+                resource
                   = new Entity.Builder()
                     .withId(String.valueOf(source.getConversationId().get()))
                     .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.DIGITAL_RESOURCE)
                     .build();
               }
               else {
-                assignmentObject
+                resource
                 = new Entity.Builder()
                   .withId(source.getUrl())
                   .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.DIGITAL_RESOURCE)
@@ -80,7 +81,7 @@ public class CanvasPageRequestConversationsShowOrIndexToNavigatedToEventConverte
               }
               
               event = EventBuilderUtils.usingNavigationEventType()
-                      .withObject(assignmentObject)
+                      .withObject(resource)
                       .withEventTime(eventTime)
                       .withAgent(usingPersonType(user, user.getUserId(), supportingEntities.getUserEmailMap().get(
                               user.getSourcedId()), source.getRootAccountId().toString()).build())

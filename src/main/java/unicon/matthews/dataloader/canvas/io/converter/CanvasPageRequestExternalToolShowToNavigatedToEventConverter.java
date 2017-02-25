@@ -22,34 +22,34 @@ import unicon.matthews.oneroster.Enrollment;
 import unicon.matthews.oneroster.User;
 
 @Component
-public class CanvasPageRequestFavoritesShowToNavigatedToEventConverter 
+public class CanvasPageRequestExternalToolShowToNavigatedToEventConverter 
   implements Converter<CanvasPageRequest, Optional<Event>> {
   
-  private static Logger logger = LoggerFactory.getLogger(CanvasPageRequestFavoritesShowToNavigatedToEventConverter.class);
-
+  private static Logger logger = LoggerFactory.getLogger(CanvasPageRequestExternalToolShowToNavigatedToEventConverter.class);
+  
   @Override
   public boolean supports(CanvasPageRequest source) {
     return (
-            (source.getWebApplicationController().equalsIgnoreCase("favorites")) &&
+            (source.getWebApplicationController().equalsIgnoreCase("external_tools")) &&
             (source.getWebApplicationAction().equalsIgnoreCase("show")) &&
             (source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()))
                 || source.getHttpStatus().equals(String.valueOf(HttpStatus.NOT_MODIFIED.value())))
            );
   }
-
+  
   @Override
   public Optional<Event> convert(CanvasPageRequest source, SupportingEntities supportingEntities) {
-
+  
     logger.debug("Source: {}",source);
     
     Optional<Event> result = null;
-
+  
     Optional<Long> userId = source.getUserId();
-
+  
     if (!userId.isPresent()) {
         result = Optional.empty();
     } else {
-
+  
         Optional<User> maybeUser = supportingEntities.getUsers().values().stream().filter(u -> u.getSourcedId().equalsIgnoreCase(
             String.valueOf(userId.get()))).findFirst();
         
@@ -57,7 +57,7 @@ public class CanvasPageRequestFavoritesShowToNavigatedToEventConverter
           User user = maybeUser.get();
           
           LocalDateTime eventTime = LocalDateTime.ofInstant(source.getTimestamp(), ZoneId.of("UTC"));
-
+  
           Event event;
           Enrollment enrollment = null;
           if (source.getCourseId().isPresent()) {
@@ -69,7 +69,7 @@ public class CanvasPageRequestFavoritesShowToNavigatedToEventConverter
               = new HashMap<>();
               entityMetadata.put("CANVAS_ACTION", source.getWebApplicationAction());
               entityMetadata.put("CANVAS_CONTROLLER", source.getWebApplicationController());
-
+  
               Entity resource = new Entity.Builder()
                 .withId(source.getUrl())
                 .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.DIGITAL_RESOURCE)
@@ -96,7 +96,7 @@ public class CanvasPageRequestFavoritesShowToNavigatedToEventConverter
           result = Optional.empty();
         }
     }
-
+  
     return result;
   }
 }

@@ -325,8 +325,9 @@ public class CanvasDataApiClient {
         }
 
         if (endDateUTC.isAfter(latestDumpDateUTC)) {
-            throw new RuntimeException(String.format("The latest canvas dump available is for %tF, so please adjust " +
-                    "your end date accordingly.", latestDumpDateUTC));
+//            throw new RuntimeException(String.format("The latest canvas dump available is for %tF, so please adjust " +
+//                    "your end date accordingly.", latestDumpDateUTC));
+          
         }
 
         Duration dumpStartOffsetPeriod = Duration.between(firstSequenceDumpDateMidnightUTC, startDateUTC);

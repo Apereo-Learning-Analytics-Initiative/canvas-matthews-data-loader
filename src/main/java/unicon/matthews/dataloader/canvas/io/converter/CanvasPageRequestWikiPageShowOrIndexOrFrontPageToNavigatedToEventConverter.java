@@ -21,15 +21,17 @@ import static unicon.matthews.dataloader.canvas.io.converter.EventBuilderUtils.u
 import static unicon.matthews.dataloader.canvas.io.converter.EventBuilderUtils.usingPersonType;
 
 @Component
-public class CanvasPageRequestWikiPageViewToViewEventConverter
+public class CanvasPageRequestWikiPageShowOrIndexOrFrontPageToNavigatedToEventConverter
         implements Converter<CanvasPageRequest, Optional<Event>> {
 
-    private static Logger logger = LoggerFactory.getLogger(CanvasPageRequestWikiPageViewToViewEventConverter.class);
+    private static Logger logger = LoggerFactory.getLogger(CanvasPageRequestWikiPageShowOrIndexOrFrontPageToNavigatedToEventConverter.class);
 
     @Override
     public boolean supports(CanvasPageRequest source) {
         return (source.getWebApplicationController().equalsIgnoreCase("wiki_pages")) &&
-                (source.getWebApplicationAction().equalsIgnoreCase("show")) &&
+                (source.getWebApplicationAction().equalsIgnoreCase("show")
+                    || source.getWebApplicationAction().equalsIgnoreCase("index")
+                    || source.getWebApplicationAction().equalsIgnoreCase("front_page")) &&
                 source.getHttpMthod().equalsIgnoreCase(HttpMethod.GET.toString()) &&
                 source.getHttpStatus().equals(String.valueOf(HttpStatus.OK.value()));
     }
@@ -68,7 +70,7 @@ public class CanvasPageRequestWikiPageViewToViewEventConverter
                             .withType(EventBuilderUtils.CaliperV1p1Vocab.Entity.WEB_PAGE)
                             .build();
 
-                    event = EventBuilderUtils.usingViewedEventType()
+                    event = EventBuilderUtils.usingNavigationEventType()
                             .withObject(wikiPageObject)
                             .withEventTime(eventTime)
                             .withAgent(usingPersonType(user, user.getUserId(), supportingEntities.getUserEmailMap().get(
