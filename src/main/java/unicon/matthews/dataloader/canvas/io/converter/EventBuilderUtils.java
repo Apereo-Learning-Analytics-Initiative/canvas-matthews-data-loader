@@ -269,7 +269,7 @@ public class EventBuilderUtils {
         return new Membership.Builder()
                 .withId(enrollment.getSourcedId())
                 .withType(CaliperV1p1Vocab.Entity.MEMBERSHIP)
-                .withMember(enrollment.getUser().getUserId())              // TODO Redundant - This was intended for a member enrollment ID (if one exists) - perhaps we omit?
+                .withMember(enrollment.getUser().getSourcedId())              // TODO Redundant - This was intended for a member enrollment ID (if one exists) - perhaps we omit?
                 .withOrganization(enrollment.getKlass().getSourcedId())    // CourseSection
                 .withRoles(Arrays.asList(enrollment.getRole().name()));
     }

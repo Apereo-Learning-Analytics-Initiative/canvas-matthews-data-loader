@@ -65,8 +65,13 @@ public class CanvasPageRequestToLoginEventConverter implements Converter<CanvasP
               Enrollment enrollment = null;
               if (request.getCourseId().isPresent()) {
                   String courseId = request.getCourseId().get().toString();
-                  enrollment = supportingEntities.getEnrollments().values().stream().filter(
-                          e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)).findFirst().get();
+                  enrollment 
+                  = supportingEntities.getEnrollments()
+                    .values().stream()
+                    .filter(
+                            e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)
+                              && e.getUser().getSourcedId().equalsIgnoreCase(user.getSourcedId())
+                        ).findFirst().get();
     
                   event = EventBuilderUtils.usingLoginEventType()
                           .withEventTime(eventTime)

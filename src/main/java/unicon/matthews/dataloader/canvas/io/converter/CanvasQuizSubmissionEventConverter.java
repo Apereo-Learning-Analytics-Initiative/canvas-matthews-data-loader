@@ -52,9 +52,13 @@ public class CanvasQuizSubmissionEventConverter implements Converter<CanvasQuizS
         LocalDateTime eventTime = LocalDateTime.ofInstant(canvasQuizSubmissionDimension.getCreatedAt().get(),
                 ZoneId.of("UTC"));
 
-        Enrollment enrollment = supportingEntities.getEnrollments().values().stream().filter(
-                e -> e.getKlass().getSourcedId().equalsIgnoreCase(
-                        canvasQuizSubmissionFact.getCourseId().toString())).findFirst().get();
+        Enrollment enrollment = supportingEntities.getEnrollments()
+            .values().stream()
+            .filter(
+                    e -> e.getKlass().getSourcedId().equalsIgnoreCase(canvasQuizSubmissionFact.getCourseId().toString())
+                      && e.getUser().getSourcedId().equalsIgnoreCase(user.getSourcedId())
+                ).findFirst().get();
+
 
         LineItem canvasQuizLineItem = supportingEntities.getLineItems().values().stream().filter(
                 l -> l.getSourcedId().equalsIgnoreCase(

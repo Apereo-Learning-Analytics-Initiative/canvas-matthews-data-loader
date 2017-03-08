@@ -43,9 +43,13 @@ public class CanvasAssignmentSubmissionConverter implements Converter<CanvasAssi
     LocalDateTime eventTime = LocalDateTime.ofInstant(canvasAssignmentSubmissionDimension.getCreatedAt().get(),
             ZoneId.of("UTC"));
 
-    Enrollment enrollment = supportingEntities.getEnrollments().values().stream().filter(
-            e -> e.getKlass().getSourcedId().equalsIgnoreCase(
-                    source.getCourseId().toString())).findFirst().get();
+    Enrollment enrollment 
+    = supportingEntities.getEnrollments()
+      .values().stream()
+      .filter(
+              e -> e.getKlass().getSourcedId().equalsIgnoreCase(source.getCourseId().toString())
+                && e.getUser().getSourcedId().equalsIgnoreCase(user.getSourcedId())
+          ).findFirst().get();
 
     LineItem canvasAssignmentLineItem = supportingEntities.getLineItems().values().stream().filter(
             l -> l.getSourcedId().equalsIgnoreCase(

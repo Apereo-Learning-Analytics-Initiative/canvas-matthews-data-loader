@@ -57,8 +57,21 @@ public class CanvasPageRequestAssignmentShowToNavigatedToEventConverter
           Enrollment enrollment = null;
           if (source.getCourseId().isPresent()) {
               String courseId = source.getCourseId().get().toString();
-              enrollment = supportingEntities.getEnrollments().values().stream().filter(
-                      e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)).findFirst().get();
+              Optional<Enrollment> maybeEnrollment
+              = supportingEntities.getEnrollments()
+                .values().stream()
+                .filter(
+                        e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)
+                          && e.getUser().getSourcedId().equalsIgnoreCase(user.getSourcedId())
+                    ).findFirst();
+              
+              if (!maybeEnrollment.isPresent()) {
+                // TODO fixme
+                // we should not be relying on enrollment below
+                return Optional.empty();
+              }
+              
+              enrollment = maybeEnrollment.get();
               
               Entity assignmentObject = null;
               if (source.getAssignmentId() != null 

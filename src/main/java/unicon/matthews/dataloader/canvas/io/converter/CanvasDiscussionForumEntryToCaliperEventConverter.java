@@ -50,9 +50,13 @@ public class CanvasDiscussionForumEntryToCaliperEventConverter implements Conver
 
         LocalDateTime eventTime = LocalDateTime.ofInstant(discussionForumEntryDimension.getCreatedAt(), ZoneId.of("UTC"));
 
-        Enrollment enrollment = supportingEntities.getEnrollments().values().stream().filter(
-                    e -> e.getKlass().getSourcedId().equalsIgnoreCase(
-                            discussionForumEntryFact.getCourseId().toString())).findFirst().get();
+        Enrollment enrollment 
+          = supportingEntities.getEnrollments()
+            .values().stream()
+            .filter(
+                    e -> e.getKlass().getSourcedId().equalsIgnoreCase(discussionForumEntryFact.getCourseId().toString())
+                      && e.getUser().getSourcedId().equalsIgnoreCase(user.getSourcedId())
+                ).findFirst().get();
 
         Event event = EventBuilderUtils.usingMessageEventType()
                 .withAction(EventBuilderUtils.CaliperV1p1Vocab.Action.POSTED)

@@ -47,8 +47,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
   "grade_group_students_individually", 
   "anonymous_peer_reviews",
   "muted", 
-  "random_unknown_id", // in practice there is an id in this column but it is not in the docs
-  "assignment_group_id"
+  //"random_unknown_id", // in practice there is an id in this column but it is not in the docs
+  "assignment_group_id",
+  "position",
+  "visibility"
   })
 public class CanvasAssignmentDimension implements ReadableCanvasDumpArtifact<CanvasAssignmentDimension.Types> {
   public enum Types {
@@ -191,5 +193,11 @@ public class CanvasAssignmentDimension implements ReadableCanvasDumpArtifact<Can
   @JsonProperty("assignment_group_id")
   @JsonDeserialize(using = NullableLongFieldDeserializer.class)
   private Optional<Long> assignmentGroupId;
+  
+  @JsonProperty("position")
+  private String position;
+  
+  @JsonProperty("visibility")
+  private String visibility;
 
 }

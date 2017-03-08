@@ -58,8 +58,13 @@ public class CanvasPageRequestCalendarShow2ToNavigatedToEventConverter
           Enrollment enrollment = null;
           if (source.getCourseId().isPresent()) {
               String courseId = source.getCourseId().get().toString();
-              enrollment = supportingEntities.getEnrollments().values().stream().filter(
-                      e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)).findFirst().get();
+              enrollment 
+              = supportingEntities.getEnrollments()
+                .values().stream()
+                .filter(
+                        e -> e.getKlass().getSourcedId().equalsIgnoreCase(courseId)
+                          && e.getUser().getSourcedId().equalsIgnoreCase(user.getSourcedId())
+                    ).findFirst().get();
               
               Map<String, String> entityMetadata
               = new HashMap<>();
